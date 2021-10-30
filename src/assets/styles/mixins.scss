@@ -14,3 +14,10 @@
   border-radius: 5px;
   background-color: $color-field-bg;
 }
+
+@mixin listReset {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
