@@ -1,0 +1,16 @@
+@import "src/assets/styles/variables";
+
+@mixin divider {
+  border-bottom: 1px solid $color-divider;
+}
+
+@mixin field {
+  max-width: 40px;
+
+  color: $color-value;
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+  background-color: $color-field-bg;
+}

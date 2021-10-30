@@ -1,0 +1,66 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.heroCharacteristics {
+  @include divider;
+
+  padding: 10px 24px;
+}
+
+.levelWrap {
+  @include divider;
+
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.field {
+  @include field;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.item {
+  padding-left: 17px;
+
+  background-image: url("../../assets/images/icon-star-default.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+.itemStrength {
+  background-image: url("../../assets/images/icon-strength.png");
+}
+
+.itemHealth {
+  background-image: url("../../assets/images/icon-health.png");
+}
+
+.itemEnergy {
+  background-image: url("../../assets/images/icon-energy.png");
+}
+
+.itemRegeneration {
+  background-image: url("../../assets/images/icon-regeneration.png");
+}
+
+.itemShield {
+  background-image: url("../../assets/images/icon-shield.png");
+}
+
+.value {
+  color: $color-value;
+}

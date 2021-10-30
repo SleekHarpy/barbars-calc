@@ -1,0 +1,9 @@
+@import "../../assets/styles/variables";
+
+.container {
+  margin: 0 auto;
+
+  max-width: 425px;
+
+  background-color: $color-bg;
+}
