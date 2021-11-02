@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 const LEVEL_BONUS = 10;
 
-function HeroCharacteristics({titleBonuses}) {
+function HeroCharacteristics({titleBonuses, abilityBonuses}) {
     const [level, setLevel] = useState(1);
     const [strength, setStrength] = useState(0);
     const [health, setHealth] = useState(0);
@@ -27,15 +27,15 @@ function HeroCharacteristics({titleBonuses}) {
 
     useEffect(() => {
         countSum();
-    }, [level, titleBonuses]);
+    }, [level, titleBonuses, abilityBonuses]);
 
     const countSum = () => {
         const levelBonus = LEVEL_BONUS * level;
-        const sumStrength = levelBonus + titleBonuses.strength;
-        const sumHealth = levelBonus + titleBonuses.health;
-        const sumEnergy = levelBonus + titleBonuses.energy;
+        const sumStrength = levelBonus + titleBonuses.strength + abilityBonuses.strength;
+        const sumHealth = levelBonus + titleBonuses.health + abilityBonuses.health;
+        const sumEnergy = levelBonus + titleBonuses.energy + abilityBonuses.energy;
         const sumRegeneration = levelBonus + titleBonuses.regeneration;
-        const sumShield = levelBonus + titleBonuses.shield;
+        const sumShield = levelBonus + titleBonuses.shield + abilityBonuses.shield;
 
         setStrength(sumStrength);
         setHealth(sumHealth);

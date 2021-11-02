@@ -1,0 +1,67 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.abilities {
+  @include divider;
+
+  padding: 0 24px;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.list {
+  padding-left: 10px;
+}
+
+.item {
+  margin-bottom: 10px;
+
+  display: grid;
+  grid-template-columns: 53px 1fr;
+  min-height: 56px;
+}
+
+.img {
+  align-self: center;
+}
+
+.itemTitle {
+  margin: 0;
+  margin-bottom: 5px;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.selectWrap {
+  margin-bottom: 5px;
+}
+
+.select {
+  @include field;
+
+  margin-left: 5px;
+  padding-right: 10px;
+
+  max-width: none;
+
+  color: #ffffff;
+  text-align: left;
+}
+
+.bonusWrap {
+  margin: 0;
+
+  font-size: 12px;
+}
+
+.bonus {
+  color: $color-bonus;
+}
+
+.bonusValue {
+  color: $color-value;
+}
