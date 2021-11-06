@@ -42,12 +42,11 @@ function Ability({ability, abilities, onChangeAbility}) {
 
         if (value !== 0) {
             setSelectedBonus({label: label, value: value});
-            onChangeAbility({...abilities, [ability.param]: value});
+            onChangeAbility(ability.param, value);
         } else {
             setSelectedBonus(null);
-            onChangeAbility({...abilities, [ability.param]: 0});
+            onChangeAbility(ability.param, 0);
         }
-
     };
 
     return (

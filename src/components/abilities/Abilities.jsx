@@ -1,6 +1,5 @@
 import styles from './Abilities.module.scss';
 import Ability from "./ability/Ability";
-import { useEffect, useState } from "react";
 import berserkImg from "../../assets/images/abilities/ability-berserk.png";
 import reflectionImg from "../../assets/images/abilities/ability-reflection.png";
 import stoneImg from "../../assets/images/abilities/ability-stone.png";
@@ -34,26 +33,19 @@ const energy = {
     icon: energyImg,
 };
 
-function Abilities({handleBonuses}) {
-    const [bonuses, setBonuses] = useState({
-        strength: 0,
-        health: 0,
-        shield: 0,
-        energy: 0,
-    });
-
-    useEffect(() => {
-        handleBonuses(bonuses);
-    }, [bonuses]);
+function Abilities({store}) {
+    const handleChangeBonus = (name, value) => {
+        store.updateAbilities(name, value);
+    };
 
     return (
         <section className={styles.abilities}>
             <h2 className={styles.title}>Умения</h2>
             <div className={styles.list}>
-                <Ability ability={bers} abilities={bonuses} onChangeAbility={setBonuses} />
-                <Ability ability={reflection} abilities={bonuses} onChangeAbility={setBonuses} />
-                <Ability ability={stone} abilities={bonuses} onChangeAbility={setBonuses} />
-                <Ability ability={energy} abilities={bonuses} onChangeAbility={setBonuses} />
+                <Ability ability={bers} onChangeAbility={handleChangeBonus} />
+                <Ability ability={reflection} onChangeAbility={handleChangeBonus} />
+                <Ability ability={stone} onChangeAbility={handleChangeBonus} />
+                <Ability ability={energy} onChangeAbility={handleChangeBonus} />
             </div>
         </section>
     );

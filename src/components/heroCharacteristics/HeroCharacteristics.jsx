@@ -1,10 +1,12 @@
 import styles from './HeroCharacteristics.module.scss';
 import {useEffect, useState} from "react";
+import {observer} from "mobx-react-lite";
+import {autorun} from "mobx";
 
 
 const LEVEL_BONUS = 10;
 
-function HeroCharacteristics({titleBonuses, abilityBonuses}) {
+function HeroCharacteristics({store}) {
     const [level, setLevel] = useState(1);
     const [strength, setStrength] = useState(0);
     const [health, setHealth] = useState(0);
@@ -12,6 +14,9 @@ function HeroCharacteristics({titleBonuses, abilityBonuses}) {
     const [regeneration, setRegeneration] = useState(0);
     const [shield, setShield] = useState(0);
     const [totalSum, setTotalSum] = useState(0);
+
+    const titleBonuses = store.titleBonuses;
+    const abilities = store.abilities;
 
     useEffect(() => {
         const totalSum = strength + health + energy + regeneration + shield;
@@ -27,15 +32,19 @@ function HeroCharacteristics({titleBonuses, abilityBonuses}) {
 
     useEffect(() => {
         countSum();
-    }, [level, titleBonuses, abilityBonuses]);
+    }, [level]);
+
+    useEffect(() => autorun(() => {
+        countSum();
+    }))
 
     const countSum = () => {
         const levelBonus = LEVEL_BONUS * level;
-        const sumStrength = levelBonus + titleBonuses.strength + abilityBonuses.strength;
-        const sumHealth = levelBonus + titleBonuses.health + abilityBonuses.health;
-        const sumEnergy = levelBonus + titleBonuses.energy + abilityBonuses.energy;
+        const sumStrength = levelBonus + titleBonuses.strength + abilities.strength;
+        const sumHealth = levelBonus + titleBonuses.health + abilities.health;
+        const sumEnergy = levelBonus + titleBonuses.energy + abilities.energy;
         const sumRegeneration = levelBonus + titleBonuses.regeneration;
-        const sumShield = levelBonus + titleBonuses.shield + abilityBonuses.shield;
+        const sumShield = levelBonus + titleBonuses.shield + abilities.shield;
 
         setStrength(sumStrength);
         setHealth(sumHealth);
@@ -81,4 +90,4 @@ function HeroCharacteristics({titleBonuses, abilityBonuses}) {
     );
 }
 
-export default HeroCharacteristics;
+export default observer(HeroCharacteristics);
