@@ -5,6 +5,7 @@ import Container from "./components/container/Container";
 import TitleBonus from "./components/titleBonus/TitleBonus";
 import Abilities from "./components/abilities/Abilities";
 import appStore from "./store/appStore";
+import Altar from "./components/altar/altar";
 
 function App() {
     const store = appStore;
@@ -14,6 +15,7 @@ function App() {
             <HeroCharacteristics store={store} />
             <TitleBonus store={store} />
             <Abilities store={store} />
+            <Altar store={store} />
         </Container>
     );
 }

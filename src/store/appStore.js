@@ -10,14 +10,17 @@ const initialState = {
 
 class AppStore{
     titleBonuses = {...initialState};
-    abilities = {...initialState}
+    abilities = {...initialState};
+    altar = 0;
 
     constructor() {
         makeObservable(this, {
             titleBonuses: observable,
             abilities: observable,
+            altar: observable,
             updateBonuses: action,
             updateAbilities: action,
+            updateAltar: action,
         });
     };
 
@@ -27,6 +30,10 @@ class AppStore{
 
     updateAbilities(name, value) {
         this.abilities[name] = value;
+    };
+
+    updateAltar(value) {
+        this.altar = value;
     };
 }
 

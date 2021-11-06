@@ -17,6 +17,7 @@ function HeroCharacteristics({store}) {
 
     const titleBonuses = store.titleBonuses;
     const abilities = store.abilities;
+    const altar = store.altar;
 
     useEffect(() => {
         const totalSum = strength + health + energy + regeneration + shield;
@@ -40,11 +41,13 @@ function HeroCharacteristics({store}) {
 
     const countSum = () => {
         const levelBonus = LEVEL_BONUS * level;
-        const sumStrength = levelBonus + titleBonuses.strength + abilities.strength;
-        const sumHealth = levelBonus + titleBonuses.health + abilities.health;
-        const sumEnergy = levelBonus + titleBonuses.energy + abilities.energy;
-        const sumRegeneration = levelBonus + titleBonuses.regeneration;
-        const sumShield = levelBonus + titleBonuses.shield + abilities.shield;
+        const sumAltar = (levelBonus / 100 * altar) + levelBonus;
+
+        const sumStrength = sumAltar + titleBonuses.strength + abilities.strength;
+        const sumHealth = sumAltar + titleBonuses.health + abilities.health;
+        const sumEnergy = sumAltar + titleBonuses.energy + abilities.energy;
+        const sumRegeneration = sumAltar + titleBonuses.regeneration;
+        const sumShield = sumAltar + titleBonuses.shield + abilities.shield;
 
         setStrength(sumStrength);
         setHealth(sumHealth);
@@ -68,22 +71,22 @@ function HeroCharacteristics({store}) {
             </div>
             <ul className={styles.list}>
                 <li className={`${styles.item} ${styles.itemStrength}`}>
-                    сила: <span className={styles.value}>{strength}</span>
+                    сила: <span className={altar > 0 ? styles.value : null}>{strength}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemHealth}`}>
-                    здоровье: <span className={styles.value}>{health}</span>
+                    здоровье: <span className={altar > 0 ? styles.value : null}>{health}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemEnergy}`}>
-                    энергия: <span className={styles.value}>{energy}</span>
+                    энергия: <span className={altar > 0 ? styles.value : null}>{energy}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemRegeneration}`}>
-                    регенерация: <span className={styles.value}>{regeneration}</span>
+                    регенерация: <span className={altar > 0 ? styles.value : null}>{regeneration}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemShield}`}>
-                    броня: <span className={styles.value}>{shield}</span>
+                    броня: <span className={altar > 0 ? styles.value : null}>{shield}</span>
                 </li>
                 <li className={styles.item}>
-                    сумма: <span className={styles.value}>{totalSum}</span>
+                    сумма: <span className={altar > 0 ? styles.value : null}>{totalSum}</span>
                 </li>
             </ul>
         </section>

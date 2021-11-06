@@ -1,0 +1,20 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.altar {
+  @include divider;
+
+  padding: 10px 24px;
+}
+
+.label {
+  padding-left: 17px;
+
+  background-image: url("../../assets/images/quality/star-blue.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+.field {
+  @include field;
+}
