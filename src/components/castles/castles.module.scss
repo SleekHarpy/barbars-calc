@@ -1,0 +1,62 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.castles {
+  @include divider;
+
+  padding: 0 24px;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.list {
+  @include listReset;
+
+  margin-bottom: 10px;
+  padding-left: 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+}
+
+.label {
+  padding-left: 21px;
+
+  background-image: url("../../assets/images/icon-unchecked.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+
+  cursor: pointer;
+}
+
+.checkbox:checked ~ label {
+  background-image: url("../../assets/images/icon-checked.png");
+}
+
+.bonusWrap {
+  margin: 0;
+  padding-left: 21px;
+
+  font-size: 12px;
+}
+
+.bonus {
+  color: $color-bonus;
+}
+
+.bonusValue {
+  color: $color-value;
+}
+
+.text {
+  margin: 0;
+  padding-left: 17px;
+
+  background-image: url("../../assets/images/quality/star-blue.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+}

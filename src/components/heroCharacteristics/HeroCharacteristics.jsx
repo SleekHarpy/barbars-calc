@@ -18,6 +18,7 @@ function HeroCharacteristics({store}) {
     const titleBonuses = store.titleBonuses;
     const abilities = store.abilities;
     const altar = store.altar;
+    const castles = store.castleBonuses;
 
     useEffect(() => {
         const totalSum = strength + health + energy + regeneration + shield;
@@ -41,13 +42,25 @@ function HeroCharacteristics({store}) {
 
     const countSum = () => {
         const levelBonus = LEVEL_BONUS * level;
-        const sumAltar = (levelBonus / 100 * altar) + levelBonus;
 
-        const sumStrength = sumAltar + titleBonuses.strength + abilities.strength;
-        const sumHealth = sumAltar + titleBonuses.health + abilities.health;
-        const sumEnergy = sumAltar + titleBonuses.energy + abilities.energy;
-        const sumRegeneration = sumAltar + titleBonuses.regeneration;
-        const sumShield = sumAltar + titleBonuses.shield + abilities.shield;
+        const castleStrength = levelBonus + castles.strength;
+        const castleHealth = levelBonus + castles.health;
+        const castleEnergy = levelBonus + castles.energy;
+        const castleRegeneration = levelBonus + castles.regeneration;
+        const castleShield = levelBonus + castles.shield;
+
+        const sumAltarStrength = (castleStrength / 100 * altar) + castleStrength;
+        const sumAltarHealth = (castleHealth / 100 * altar) + castleHealth;
+        const sumAltarEnergy = (castleEnergy / 100 * altar) + castleEnergy;
+        const sumAltarRegeneration = (castleRegeneration / 100 * altar) + castleRegeneration;
+        const sumAltarShield = (castleShield / 100 * altar) + castleShield;
+
+
+        const sumStrength = sumAltarStrength + titleBonuses.strength + abilities.strength;
+        const sumHealth = sumAltarHealth + titleBonuses.health + abilities.health;
+        const sumEnergy = sumAltarEnergy + titleBonuses.energy + abilities.energy;
+        const sumRegeneration = sumAltarRegeneration + titleBonuses.regeneration;
+        const sumShield = sumAltarShield + titleBonuses.shield + abilities.shield;
 
         setStrength(sumStrength);
         setHealth(sumHealth);

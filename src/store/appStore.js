@@ -12,15 +12,20 @@ class AppStore{
     titleBonuses = {...initialState};
     abilities = {...initialState};
     altar = 0;
+    castleBonuses = {...initialState};
+    enchantmentSum = 2300;
 
     constructor() {
         makeObservable(this, {
             titleBonuses: observable,
             abilities: observable,
             altar: observable,
+            castleBonuses: observable,
+            enchantmentSum: observable,
             updateBonuses: action,
             updateAbilities: action,
             updateAltar: action,
+            updateCastle: action,
         });
     };
 
@@ -35,6 +40,14 @@ class AppStore{
     updateAltar(value) {
         this.altar = value;
     };
+
+    updateCastle(bonus, isActive) {
+        if (isActive) {
+            this.castleBonuses[bonus] = this.enchantmentSum * 0.10;
+        } else if (!isActive) {
+            this.castleBonuses[bonus] = 0;
+        }
+    }
 }
 
 const appStore = new AppStore();

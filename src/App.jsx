@@ -6,6 +6,7 @@ import TitleBonus from "./components/titleBonus/TitleBonus";
 import Abilities from "./components/abilities/Abilities";
 import appStore from "./store/appStore";
 import Altar from "./components/altar/altar";
+import Castles from "./components/castles/castles";
 
 function App() {
     const store = appStore;
@@ -16,6 +17,7 @@ function App() {
             <TitleBonus store={store} />
             <Abilities store={store} />
             <Altar store={store} />
+            <Castles store={store} />
         </Container>
     );
 }
