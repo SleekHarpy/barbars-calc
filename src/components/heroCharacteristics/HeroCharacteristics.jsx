@@ -6,67 +6,55 @@ import {autorun} from "mobx";
 
 const LEVEL_BONUS = 10;
 
+const paramNames = [`strength`, `health`, `shield`, `energy`, `regeneration`];
+
 function HeroCharacteristics({store}) {
-    const [level, setLevel] = useState(1);
-    const [strength, setStrength] = useState(0);
-    const [health, setHealth] = useState(0);
-    const [energy, setEnergy] = useState(0);
-    const [regeneration, setRegeneration] = useState(0);
-    const [shield, setShield] = useState(0);
+    const [params, setParams] = useState({
+        strength: 0,
+        health: 0,
+        shield: 0,
+        energy: 0,
+        regeneration: 0,
+    });
     const [totalSum, setTotalSum] = useState(0);
 
+    const level = store.level;
     const titleBonuses = store.titleBonuses;
     const abilities = store.abilities;
     const altar = store.altar;
     const castles = store.castleBonuses;
+    const mastery = store.mastery;
+
+    useEffect(() => autorun(() => {
+        countSum();
+    }), [level, altar]);
 
     useEffect(() => {
-        const totalSum = strength + health + energy + regeneration + shield;
+        const totalSum = params.strength + params.health + params.energy + params.regeneration + params.shield;
 
         setTotalSum(totalSum);
-    }, [strength, health, energy, regeneration, shield]);
+    }, [params]);
 
     const handleChangeLevel = (evt) => {
         const level = Number(evt.target.value);
 
-        setLevel(level);
+        store.updateLevel(level);
     };
 
-    useEffect(() => {
-        countSum();
-    }, [level]);
-
-    useEffect(() => autorun(() => {
-        countSum();
-    }))
-
     const countSum = () => {
-        const levelBonus = LEVEL_BONUS * level;
+        const params = {};
 
-        const castleStrength = levelBonus + castles.strength;
-        const castleHealth = levelBonus + castles.health;
-        const castleEnergy = levelBonus + castles.energy;
-        const castleRegeneration = levelBonus + castles.regeneration;
-        const castleShield = levelBonus + castles.shield;
+        paramNames.forEach((param) => {
+            const levelBonus = LEVEL_BONUS * level;
 
-        const sumAltarStrength = (castleStrength / 100 * altar) + castleStrength;
-        const sumAltarHealth = (castleHealth / 100 * altar) + castleHealth;
-        const sumAltarEnergy = (castleEnergy / 100 * altar) + castleEnergy;
-        const sumAltarRegeneration = (castleRegeneration / 100 * altar) + castleRegeneration;
-        const sumAltarShield = (castleShield / 100 * altar) + castleShield;
+            const castle = levelBonus + castles[param];
 
+            const sumAltarMaster = (castle / 100 * (altar + mastery.master)) + castle;
 
-        const sumStrength = sumAltarStrength + titleBonuses.strength + abilities.strength;
-        const sumHealth = sumAltarHealth + titleBonuses.health + abilities.health;
-        const sumEnergy = sumAltarEnergy + titleBonuses.energy + abilities.energy;
-        const sumRegeneration = sumAltarRegeneration + titleBonuses.regeneration;
-        const sumShield = sumAltarShield + titleBonuses.shield + abilities.shield;
+            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param];
+        });
 
-        setStrength(sumStrength);
-        setHealth(sumHealth);
-        setEnergy(sumEnergy);
-        setRegeneration(sumRegeneration);
-        setShield(sumShield);
+        setParams({...params});
     };
 
     return (
@@ -77,26 +65,27 @@ function HeroCharacteristics({store}) {
                     id="level"
                     type="number"
                     min="1"
-                    value={level}
+                    defaultValue={level}
                     onChange={handleChangeLevel}
+                    placeholder="1"
                 />
                 <label htmlFor="level"> уровень</label>
             </div>
             <ul className={styles.list}>
                 <li className={`${styles.item} ${styles.itemStrength}`}>
-                    сила: <span className={altar > 0 ? styles.value : null}>{strength}</span>
+                    сила: <span className={altar > 0 ? styles.value : null}>{params.strength}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemHealth}`}>
-                    здоровье: <span className={altar > 0 ? styles.value : null}>{health}</span>
+                    здоровье: <span className={altar > 0 ? styles.value : null}>{params.health}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemEnergy}`}>
-                    энергия: <span className={altar > 0 ? styles.value : null}>{energy}</span>
+                    энергия: <span className={altar > 0 ? styles.value : null}>{params.energy}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemRegeneration}`}>
-                    регенерация: <span className={altar > 0 ? styles.value : null}>{regeneration}</span>
+                    регенерация: <span className={altar > 0 ? styles.value : null}>{params.regeneration}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemShield}`}>
-                    броня: <span className={altar > 0 ? styles.value : null}>{shield}</span>
+                    броня: <span className={altar > 0 ? styles.value : null}>{params.shield}</span>
                 </li>
                 <li className={styles.item}>
                     сумма: <span className={altar > 0 ? styles.value : null}>{totalSum}</span>

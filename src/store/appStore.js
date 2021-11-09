@@ -6,27 +6,41 @@ const initialState = {
     shield: 0,
     energy: 0,
     regeneration: 0,
-}
+};
+
+const START_LEVEL = 1
+const START_ALTAR = 0;
+
 
 class AppStore{
+    level = START_LEVEL;
     titleBonuses = {...initialState};
     abilities = {...initialState};
-    altar = 0;
+    altar = START_ALTAR;
     castleBonuses = {...initialState};
+    mastery = {...initialState, master: 0};
     enchantmentSum = 2300;
 
     constructor() {
         makeObservable(this, {
+            level: observable,
             titleBonuses: observable,
             abilities: observable,
             altar: observable,
             castleBonuses: observable,
+            mastery: observable,
             enchantmentSum: observable,
+            updateLevel: action,
             updateBonuses: action,
             updateAbilities: action,
             updateAltar: action,
             updateCastle: action,
+            updateMastery: action,
         });
+    };
+
+    updateLevel(value) {
+        this.level = value;
     };
 
     updateBonuses(name, value) {
@@ -47,6 +61,10 @@ class AppStore{
         } else if (!isActive) {
             this.castleBonuses[bonus] = 0;
         }
+    };
+
+    updateMastery(name, value) {
+        this.mastery[name] = value;
     }
 }
 

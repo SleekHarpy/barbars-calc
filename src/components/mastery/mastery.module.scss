@@ -1,0 +1,38 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.mastery {
+  @include divider;
+
+  padding: 0 24px;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.label {
+  margin-bottom: 10px;
+  padding-left: 17px;
+
+  display: inline-block;
+
+  background-image: url("../../assets/images/quality/star-blue.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+.list {
+  @include listReset;
+
+  padding-left: 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  @include field;
+}

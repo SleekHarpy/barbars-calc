@@ -7,6 +7,7 @@ import Abilities from "./components/abilities/Abilities";
 import appStore from "./store/appStore";
 import Altar from "./components/altar/altar";
 import Castles from "./components/castles/castles";
+import Mastery from "./components/mastery/mastery";
 
 function App() {
     const store = appStore;
@@ -18,6 +19,7 @@ function App() {
             <Abilities store={store} />
             <Altar store={store} />
             <Castles store={store} />
+            <Mastery store={store} />
         </Container>
     );
 }
