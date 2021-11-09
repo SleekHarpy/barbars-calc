@@ -8,6 +8,7 @@ import appStore from "./store/appStore";
 import Altar from "./components/altar/altar";
 import Castles from "./components/castles/castles";
 import Mastery from "./components/mastery/mastery";
+import Quenching from "./components/quenching/quenching";
 
 function App() {
     const store = appStore;
@@ -20,6 +21,7 @@ function App() {
             <Altar store={store} />
             <Castles store={store} />
             <Mastery store={store} />
+            <Quenching store={store} />
         </Container>
     );
 }

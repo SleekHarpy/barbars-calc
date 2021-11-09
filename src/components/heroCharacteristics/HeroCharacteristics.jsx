@@ -24,10 +24,11 @@ function HeroCharacteristics({store}) {
     const altar = store.altar;
     const castles = store.castleBonuses;
     const mastery = store.mastery;
+    const quenching = store.quenching;
 
     useEffect(() => autorun(() => {
         countSum();
-    }), [level, altar]);
+    }), [level, altar, quenching]);
 
     useEffect(() => {
         const totalSum = params.strength + params.health + params.energy + params.regeneration + params.shield;
@@ -51,7 +52,9 @@ function HeroCharacteristics({store}) {
 
             const sumAltarMaster = (castle / 100 * (altar + mastery.master)) + castle;
 
-            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param];
+            const quenchingSum = LEVEL_BONUS * quenching;
+
+            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + quenchingSum;
         });
 
         setParams({...params});

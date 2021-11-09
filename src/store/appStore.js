@@ -1,5 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 
+
 const initialState = {
     strength: 0,
     health: 0,
@@ -11,7 +12,6 @@ const initialState = {
 const START_LEVEL = 1
 const START_ALTAR = 0;
 
-
 class AppStore{
     level = START_LEVEL;
     titleBonuses = {...initialState};
@@ -19,6 +19,7 @@ class AppStore{
     altar = START_ALTAR;
     castleBonuses = {...initialState};
     mastery = {...initialState, master: 0};
+    quenching = 0;
     enchantmentSum = 2300;
 
     constructor() {
@@ -29,6 +30,7 @@ class AppStore{
             altar: observable,
             castleBonuses: observable,
             mastery: observable,
+            quenching: observable,
             enchantmentSum: observable,
             updateLevel: action,
             updateBonuses: action,
@@ -65,7 +67,11 @@ class AppStore{
 
     updateMastery(name, value) {
         this.mastery[name] = value;
-    }
+    };
+
+    quenchingUpdate(value) {
+        this.quenching = value;
+    };
 }
 
 const appStore = new AppStore();
