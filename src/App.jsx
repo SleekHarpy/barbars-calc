@@ -9,6 +9,8 @@ import Altar from "./components/altar/altar";
 import Castles from "./components/castles/castles";
 import Mastery from "./components/mastery/mastery";
 import Quenching from "./components/quenching/quenching";
+import Things from "./components/things/things";
+import Cups from "./components/cups/Cups";
 
 function App() {
     const store = appStore;
@@ -16,12 +18,14 @@ function App() {
     return (
         <Container>
             <HeroCharacteristics store={store} />
+            <Cups store={store} />
             <TitleBonus store={store} />
             <Abilities store={store} />
             <Altar store={store} />
             <Castles store={store} />
             <Mastery store={store} />
             <Quenching store={store} />
+            <Things store={store} />
         </Container>
     );
 }

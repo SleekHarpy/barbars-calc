@@ -46,7 +46,7 @@ function Castles({store}) {
                 )) }
             </ul>
             <p className={styles.text}><span className={styles.bonusValue}>+10%</span> от суммы всех твоих чар</p>
-            <p className={styles.text}>Твоя сумма чар: <span className={styles.bonusValue}>{store.enchantmentSum}</span></p>
+            <p className={styles.text}>Твоя сумма чар: <span className={styles.bonusValue}>{store.sumCharms}</span></p>
         </section>
     );
 }

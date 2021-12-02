@@ -11,8 +11,19 @@
   text-align: center;
 
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: $color-field-bg;
+}
+
+@mixin select {
+  @include field;
+
+  padding-right: 10px;
+
+  max-width: none;
+
+  color: #ffffff;
+  text-align: left;
 }
 
 @mixin listReset {
@@ -20,4 +31,13 @@
   padding: 0;
 
   list-style: none;
+}
+
+
+@mixin defaultStar {
+  padding-left: 17px;
+
+  background-image: url("../../assets/images/icon-star-default.png");
+  background-repeat: no-repeat;
+  background-position: center left;
 }

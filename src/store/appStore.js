@@ -14,35 +14,51 @@ const START_ALTAR = 0;
 
 class AppStore{
     level = START_LEVEL;
+    cups = START_ALTAR;
     titleBonuses = {...initialState};
     abilities = {...initialState};
     altar = START_ALTAR;
     castleBonuses = {...initialState};
     mastery = {...initialState, master: 0};
     quenching = 0;
-    enchantmentSum = 2300;
+    charms = {...initialState};
+    sumCharms = 0;
+    sumThings = {...initialState};
+    runes = {...initialState};
 
     constructor() {
         makeObservable(this, {
             level: observable,
+            cups: observable,
             titleBonuses: observable,
             abilities: observable,
             altar: observable,
             castleBonuses: observable,
             mastery: observable,
             quenching: observable,
-            enchantmentSum: observable,
+            charms: observable,
+            sumThings: observable,
+            sumCharms: observable,
+            runes: observable,
             updateLevel: action,
+            updateCups: action,
             updateBonuses: action,
             updateAbilities: action,
             updateAltar: action,
             updateCastle: action,
             updateMastery: action,
+            updateSumThings: action,
+            updateCharms: action,
+            updateRunes: action,
         });
     };
 
     updateLevel(value) {
         this.level = value;
+    };
+
+    updateCups(value) {
+        this.cups = value;
     };
 
     updateBonuses(name, value) {
@@ -59,7 +75,7 @@ class AppStore{
 
     updateCastle(bonus, isActive) {
         if (isActive) {
-            this.castleBonuses[bonus] = this.enchantmentSum * 0.10;
+            this.castleBonuses[bonus] = this.sumCharms * 0.10;
         } else if (!isActive) {
             this.castleBonuses[bonus] = 0;
         }
@@ -71,6 +87,19 @@ class AppStore{
 
     quenchingUpdate(value) {
         this.quenching = value;
+    };
+
+    updateSumThings(things) {
+        this.sumThings = things;
+    };
+
+    updateCharms(charms) {
+        this.charms = charms;
+        this.sumCharms = charms.strength + charms.health + charms.shield + charms.energy + charms.regeneration;
+    };
+
+    updateRunes(runes) {
+        this.runes = runes;
     };
 }
 

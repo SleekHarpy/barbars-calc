@@ -1,0 +1,26 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.runes {
+  @include defaultStar;
+}
+
+.fieldWrap {
+  color: #808080;
+}
+
+.field {
+  @include field;
+
+  color: #808080;
+}
+
+.fieldActive {
+  color: $color-value;
+}
+
+.select {
+  @include select;
+
+  margin-bottom: 5px;
+}

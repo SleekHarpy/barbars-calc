@@ -1,16 +1,8 @@
 @import "src/assets/styles/variables";
 @import "src/assets/styles/mixins";
 
-.quenching {
-  @include divider;
-
+.things {
   padding: 10px 24px;
-}
 
-.label {
-  @include defaultStar;
-}
-
-.field {
-  @include field;
+  min-height: 300px;
 }

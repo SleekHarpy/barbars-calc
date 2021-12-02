@@ -1,0 +1,122 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.thing {
+  //@include divider;
+
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 5px;
+}
+
+.topThing {
+  min-height: 40px;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 2px;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+.levelWrap {
+  margin: 0;
+
+  font-size: 12px;
+}
+
+.value {
+  color: $color-value;
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.contentHidden {
+  margin: 0;
+
+  height: 0;
+
+  overflow: hidden;
+}
+
+.contentWrap {
+  height: 0;
+  overflow: hidden;
+}
+
+.select {
+  @include select;
+
+  margin-bottom: 5px;
+}
+
+.list {
+  @include listReset;
+
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px dotted $color-divider;
+}
+
+.item {
+  @include defaultStar;
+}
+
+.item[data-param="strength"] {
+  background-image: url("../../../assets/images/icon-strength.png");
+}
+
+.item[data-param="health"] {
+  background-image: url("../../../assets/images/icon-health.png");
+}
+
+.item[data-param="energy"] {
+  background-image: url("../../../assets/images/icon-energy.png");
+}
+
+.item[data-param="regeneration"] {
+  background-image: url("../../../assets/images/icon-regeneration.png");
+}
+
+.item[data-param="shield"] {
+  background-image: url("../../../assets/images/icon-shield.png");
+}
+
+.field {
+  @include field;
+}
+
+.fieldWrap {
+  color: #808080;
+}
+
+.blacksmithValue {
+  margin-bottom: 5px;
+
+  display: inline-block;
+  min-width: 28px;
+
+  text-align: center;
+}
+
+.btnCounter {
+  @include field;
+
+  color: white;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

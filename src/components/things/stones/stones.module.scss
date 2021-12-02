@@ -1,0 +1,44 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+.fieldWrap {
+  color: #808080;
+}
+
+.field {
+  @include field;
+
+  color: #808080;
+}
+
+.fieldActive {
+  color: $color-value;
+}
+
+.fieldWrong {
+  color: #dd6666;
+}
+
+.select {
+  @include select;
+
+  margin-bottom: 5px;
+}
+
+.list {
+  @include listReset;
+
+  margin: 0;
+}
+
+.item {
+  @include defaultStar;
+}
+
+.footnote {
+  margin: 0;
+  margin-bottom: 5px;
+
+  font-size: 12px;
+  color: #808080;
+}

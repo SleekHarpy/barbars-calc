@@ -19,16 +19,20 @@ function HeroCharacteristics({store}) {
     const [totalSum, setTotalSum] = useState(0);
 
     const level = store.level;
+    const cups = store.cups;
     const titleBonuses = store.titleBonuses;
     const abilities = store.abilities;
     const altar = store.altar;
     const castles = store.castleBonuses;
     const mastery = store.mastery;
     const quenching = store.quenching;
+    const sumThings = store.sumThings;
+    const charms = store.charms;
+    const runes = store.runes;
 
     useEffect(() => autorun(() => {
         countSum();
-    }), [level, altar, quenching]);
+    }), [level, altar, quenching, sumThings, charms, cups, runes]);
 
     useEffect(() => {
         const totalSum = params.strength + params.health + params.energy + params.regeneration + params.shield;
@@ -48,13 +52,21 @@ function HeroCharacteristics({store}) {
         paramNames.forEach((param) => {
             const levelBonus = LEVEL_BONUS * level;
 
-            const castle = levelBonus + castles[param];
+            const sumParam =  sumThings[param] + levelBonus;
 
-            const sumAltarMaster = (castle / 100 * (altar + mastery.master)) + castle;
+            const sumCharms = sumParam + charms[param];
+
+            const castle = sumCharms + castles[param];
+
+            const sumAltarMaster = Math.ceil((castle / 100 * (altar + mastery.master)) + castle);
 
             const quenchingSum = LEVEL_BONUS * quenching;
 
-            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + quenchingSum;
+            const cupsSum = quenchingSum + cups;
+
+            const runesRum = cupsSum + runes[param];
+
+            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + runesRum;
         });
 
         setParams({...params});
