@@ -1,0 +1,23 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+
+.premium {
+  @include divider;
+
+  padding: 10px 24px;
+}
+
+.label {
+  padding-left: 21px;
+
+  background-image: url("../../assets/images/icon-unchecked.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+
+  cursor: pointer;
+}
+
+.checkbox:checked ~ label {
+  background-image: url("../../assets/images/icon-checked.png");
+}

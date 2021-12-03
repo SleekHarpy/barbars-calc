@@ -11,6 +11,7 @@ const initialState = {
 
 const START_LEVEL = 1
 const START_ALTAR = 0;
+const PREMIUM_BONUS = 100;
 
 class AppStore{
     level = START_LEVEL;
@@ -26,6 +27,7 @@ class AppStore{
     sumThings = {...initialState};
     runes = {...initialState};
     combatSkill = 0;
+    premium = 0;
 
     constructor() {
         makeObservable(this, {
@@ -42,6 +44,7 @@ class AppStore{
             sumCharms: observable,
             runes: observable,
             combatSkill: observable,
+            premium: observable,
             updateLevel: action,
             updateCups: action,
             updateBonuses: action,
@@ -53,6 +56,7 @@ class AppStore{
             updateCharms: action,
             updateRunes: action,
             updateCombatSkill: action,
+            updatePremium: action,
         });
     };
 
@@ -95,6 +99,10 @@ class AppStore{
     updateCombatSkill(value) {
         this.combatSkill = value;
     };
+
+    updatePremium(isPremium) {
+        this.premium = isPremium ? PREMIUM_BONUS : 0;
+    }
 
     updateSumThings(things) {
         this.sumThings = things;

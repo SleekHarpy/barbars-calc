@@ -12,6 +12,7 @@ import Quenching from "./components/quenching/quenching";
 import Things from "./components/things/things";
 import Cups from "./components/cups/Cups";
 import CombatSkill from "./components/combatSkill/CombatSkill";
+import Premium from "./components/premium/Premium";
 
 function App() {
     const store = appStore;
@@ -27,6 +28,7 @@ function App() {
             <Mastery store={store} />
             <Quenching store={store} />
             <CombatSkill store={store} />
+            <Premium store={store} />
             <Things store={store} />
         </Container>
     );
