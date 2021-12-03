@@ -1,0 +1,17 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+
+.skill {
+  @include divider;
+
+  padding: 10px 24px;
+}
+
+.label {
+  @include defaultStar;
+}
+
+.field {
+  @include field;
+}

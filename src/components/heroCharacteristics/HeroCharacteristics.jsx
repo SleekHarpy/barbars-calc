@@ -29,10 +29,11 @@ function HeroCharacteristics({store}) {
     const sumThings = store.sumThings;
     const charms = store.charms;
     const runes = store.runes;
+    const combatSkill = store.combatSkill;
 
     useEffect(() => autorun(() => {
         countSum();
-    }), [level, altar, quenching, sumThings, charms, cups, runes]);
+    }), [level, altar, quenching, sumThings, charms, cups, runes, combatSkill]);
 
     useEffect(() => {
         const totalSum = params.strength + params.health + params.energy + params.regeneration + params.shield;
@@ -64,9 +65,11 @@ function HeroCharacteristics({store}) {
 
             const cupsSum = quenchingSum + cups;
 
-            const runesRum = cupsSum + runes[param];
+            const runesSum = cupsSum + runes[param];
 
-            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + runesRum;
+            const combatSkillSum = runesSum + combatSkill;
+
+            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + combatSkillSum;
         });
 
         setParams({...params});

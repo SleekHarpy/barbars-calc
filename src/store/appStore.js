@@ -25,6 +25,7 @@ class AppStore{
     sumCharms = 0;
     sumThings = {...initialState};
     runes = {...initialState};
+    combatSkill = 0;
 
     constructor() {
         makeObservable(this, {
@@ -40,6 +41,7 @@ class AppStore{
             sumThings: observable,
             sumCharms: observable,
             runes: observable,
+            combatSkill: observable,
             updateLevel: action,
             updateCups: action,
             updateBonuses: action,
@@ -50,6 +52,7 @@ class AppStore{
             updateSumThings: action,
             updateCharms: action,
             updateRunes: action,
+            updateCombatSkill: action,
         });
     };
 
@@ -87,6 +90,10 @@ class AppStore{
 
     quenchingUpdate(value) {
         this.quenching = value;
+    };
+
+    updateCombatSkill(value) {
+        this.combatSkill = value;
     };
 
     updateSumThings(things) {

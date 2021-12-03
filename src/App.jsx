@@ -11,6 +11,7 @@ import Mastery from "./components/mastery/mastery";
 import Quenching from "./components/quenching/quenching";
 import Things from "./components/things/things";
 import Cups from "./components/cups/Cups";
+import CombatSkill from "./components/combatSkill/CombatSkill";
 
 function App() {
     const store = appStore;
@@ -25,6 +26,7 @@ function App() {
             <Castles store={store} />
             <Mastery store={store} />
             <Quenching store={store} />
+            <CombatSkill store={store} />
             <Things store={store} />
         </Container>
     );
