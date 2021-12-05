@@ -1,4 +1,5 @@
 import glovesBerserk from "../../assets/images/things/berserk/gloves-berserk.png";
+import glovesBerserk2 from "../../assets/images/things/berserk/gloves-berserk2.png";
 
 
 const glovesOne = {
@@ -12,29 +13,17 @@ const gloves = [
     {
         id: 0,
         name: `Перчатки Берсерка`,
+        level: 25,
         icon: glovesBerserk,
+        iconSorcerer: glovesBerserk2,
+        sorcerer: [`regeneration`, `shield`,],
         params: [
-            {
-                label: `Сила`,
-                param: `strength`,
-                value: 54,
-            },
-            {
-                label: `Энергия`,
-                param: `energy`,
-                value: 24,
-            },
-            {
-                label: `Регенерация`,
-                param: `regeneration`,
-                value: 24,
-            },
-            {
-                label: `Броня`,
-                param: `shield`,
-                value: 18,
-            },
-        ]
+            { param: `strength`, value: 54, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 24, },
+            { param: `shield`, value: 18, },
+        ],
     },
 ];
 

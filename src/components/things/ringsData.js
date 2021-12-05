@@ -1,4 +1,5 @@
 import ringBerserk from "../../assets/images/things/berserk/ring-berserk.png";
+import ringBerserk2 from "../../assets/images/things/berserk/ring-berserk2.png";
 
 
 const ring = {
@@ -12,23 +13,16 @@ const rings = [
     {
         id: 0,
         name: `Перстень Берсерка`,
+        level: 25,
         icon: ringBerserk,
+        iconSorcerer: ringBerserk2,
+        sorcerer: [`strength`, `health`,],
         params: [
-            {
-                label: `Здоровье`,
-                param: `health`,
-                value: 18,
-            },
-            {
-                label: `Энергия`,
-                param: `energy`,
-                value: 30,
-            },
-            {
-                label: `Регенерация`,
-                param: `regeneration`,
-                value: 96,
-            },
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 18, },
+            { param: `energy`, value: 30, },
+            { param: `regeneration`, value: 96, },
+            { param: `shield`, value: 0, },
         ]
     },
 ];

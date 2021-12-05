@@ -1,4 +1,5 @@
 import shouldersBerserk from "../../assets/images/things/berserk/shoulders-berserk.png";
+import shouldersBerserk2 from "../../assets/images/things/berserk/shoulders-berserk2.png";
 
 
 const shoulder = {
@@ -11,30 +12,18 @@ const shoulder = {
 const shoulders = [
     {
         id: 0,
-        name: `Наплечники Берсерка`,
+        name: `Наплечник Берсерка`,
+        level: 25,
         icon: shouldersBerserk,
+        iconSorcerer: shouldersBerserk2,
+        sorcerer: [`regeneration`, `shield`,],
         params: [
-            {
-                label: `Сила`,
-                param: `strength`,
-                value: 30,
-            },
-            {
-                label: `Здоровье`,
-                param: `health`,
-                value: 48,
-            },
-            {
-                label: `Регенерация`,
-                param: `regeneration`,
-                value: 24,
-            },
-            {
-                label: `Броня`,
-                param: `shield`,
-                value: 18,
-            },
-        ]
+            { param: `strength`, value: 30, },
+            { param: `health`, value: 48, },
+            { param: `energy`, value: 0, },
+            { param: `regeneration`, value: 24, },
+            { param: `shield`, value: 18, },
+        ],
     },
 ];
 

@@ -3,6 +3,14 @@ import { useEffect, useState } from "react";
 import { getInputValue } from "../../../utils/common";
 
 
+const paramNames = {
+    strength: `силы`,
+    health: `здоровья`,
+    energy: `энергии`,
+    regeneration: `регенерации`,
+    shield: `брони`,
+};
+
 const initialState = {
     strength: 0,
     health: 0,
@@ -32,6 +40,8 @@ function Stones({onChangeStone, thing}) {
         setSumStones({...initialState});
         onChangeStone({...initialState});
     }, [thing]);
+
+    console.log(thing.params)
 
     useEffect(() => {
         let sum = {...initialState};
@@ -69,7 +79,7 @@ function Stones({onChangeStone, thing}) {
                     <select className={styles.select} onChange={handleChangeStone} value={stones[0].param} data-index="0">
                         <option value="">без бонуса</option>
                         { thing && thing.params.map((item) =>
-                            <option value={item.param} key={item.param}>{item.label}</option>
+                            <option value={item.param} key={item.param}>{paramNames[item.param]}</option>
                         )}
                     </select>
                 </li>
@@ -78,7 +88,7 @@ function Stones({onChangeStone, thing}) {
                     <select className={styles.select} onChange={handleChangeStone} data-index="1">
                         <option value="">без бонуса</option>
                         { thing && thing.params.map((item) =>
-                            <option value={item.param} key={item.param}>{item.label}</option>
+                            <option value={item.param} key={item.param}>{paramNames[item.param]}</option>
                         )}
                     </select>
                 </li>
@@ -87,7 +97,7 @@ function Stones({onChangeStone, thing}) {
                     <select className={styles.select} onChange={handleChangeStone} data-index="2">
                         <option value="">без бонуса</option>
                         { thing && thing.params.map((item) =>
-                            <option value={item.param} key={item.param}>{item.label}</option>
+                            <option value={item.param} key={item.param}>{paramNames[item.param]}</option>
                         )}
                     </select>
                 </li>
@@ -96,7 +106,7 @@ function Stones({onChangeStone, thing}) {
                     <select className={styles.select} onChange={handleChangeStone} data-index="3">
                         <option value="">без бонуса</option>
                         { thing && thing.params.map((item) =>
-                            <option value={item.param} key={item.param}>{item.label}</option>
+                            <option value={item.param} key={item.param}>{paramNames[item.param]}</option>
                         )}
                     </select>
                 </li>
@@ -105,7 +115,7 @@ function Stones({onChangeStone, thing}) {
                     <select className={styles.select} onChange={handleChangeStone} data-index="4">
                         <option value="">без бонуса</option>
                         { thing && thing.params.map((item) =>
-                            <option value={item.param} key={item.param}>{item.label}</option>
+                            <option value={item.param} key={item.param}>{paramNames[item.param]}</option>
                         )}
                     </select>
                 </li>

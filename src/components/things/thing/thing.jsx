@@ -3,7 +3,7 @@ import emptySlot from '../../../assets/images/empty-slot.png';
 import { useEffect, useState } from "react";
 import Stones from "../stones/stones";
 import Runes from "../runes/runes";
-import { isEmptyObj } from "../../../utils/common";
+import { getInputValue, isEmptyObj } from "../../../utils/common";
 
 
 const magicianValues = [75, 100, 150, 200, 250, 350];
@@ -14,6 +14,14 @@ const paramNames = {
     energy: `энергии`,
     regeneration: `регенерации`,
     shield: `брони`,
+};
+
+const paramNamesTwo = {
+    strength: `Сила`,
+    health: `Здоровье`,
+    energy: `Энергия`,
+    regeneration: `Регенерация`,
+    shield: `Броня`,
 };
 
 const initialState = {
@@ -42,6 +50,26 @@ const generateMagicianOptions = (params) => {
     }
 
     return options;
+};
+
+function IconThing({selectedThing, thingData, rank}) {
+    const [urlImg, setUrlImg] = useState(emptySlot);
+
+    useEffect(() => {
+        if (!isEmptyObj(selectedThing)) {
+            if (rank > 0) {
+                setUrlImg(selectedThing.iconSorcerer);
+            } else {
+                setUrlImg(selectedThing.icon);
+            }
+        } else {
+            setUrlImg(emptySlot)
+        }
+    }, [rank, selectedThing]);
+
+    return (
+        <img src={urlImg} width="40" height="40" alt={!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}/>
+    );
 }
 
 function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingData}) {
@@ -55,6 +83,7 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
     const [multipliedParams, setMultipliedParams] = useState(null);
     const [paramPercents, setParamPercents] = useState(null);
     const [blacksmith, setBlacksmith] = useState(0);
+    const [sorcerer, setSorcerer] = useState(0)
 
     const [stones, setStones] = useState({...initialState});
 
@@ -83,7 +112,7 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
         if (!isEmptyObj(selectedThing)) {
             countSumParam();
         }
-    }, [paramPercents, blacksmith, stones]);
+    }, [paramPercents, blacksmith, stones, sorcerer]);
 
     const handleClickContent = () => {
         setShowContent(!isShowContent);
@@ -112,11 +141,20 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
         const newMultipliedParams = {};
 
         selectedThing.params.forEach((item) => {
+            let totalSum = 0;
+
             const sumPercentParam = ((item.value / 100) * paramPercents[item.param]) + item.value;
             const sumBlacksmith = ((sumPercentParam / 100) * blacksmith) + sumPercentParam;
-            const sumStone = ((sumBlacksmith / 100) * stones[item.param]) + sumBlacksmith;
+            totalSum = ((sumBlacksmith / 100) * stones[item.param]) + sumBlacksmith;
 
-            newMultipliedParams[item.param] = blacksmith > 0 || stones[item.param] > 0 ? Math.round(sumStone) : Math.floor(sumStone);
+            if (selectedThing.sorcerer.includes(item.param)) {
+                const sumSorcererPercent = ((sorcerer / 100) * paramPercents[item.param]) + sorcerer;
+                const sumSorcererBlacksmith = ((sumSorcererPercent / 100) * blacksmith) + sumSorcererPercent;
+                const sumSorcererStone = ((sumSorcererBlacksmith / 100) * stones[item.param]) + sumSorcererBlacksmith;
+                totalSum += sumSorcererStone;
+            }
+
+            newMultipliedParams[item.param] = Math.floor(totalSum);
         });
 
         setMultipliedParams({...newMultipliedParams});
@@ -143,21 +181,34 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
         if (blacksmith > 0) setBlacksmith((prev) => prev - 5);
     };
 
+    const handleChangeSorcerer = (evt) => {
+        const value = Number(evt.target.value);
+
+        if (value > 0 && sorcerer === 0) {
+            selectedThing.params.forEach((item) => {
+                item.value === 0 && setParamPercents({...paramPercents, [item.param]: 250});
+            })
+        }
+
+        setSorcerer(value);
+    }
+
     const reset = () => {
         setSelectedThing({});
         setMultipliedParams({...initialState});
         setBlacksmith(0);
         onUpdateChar(thingData.thing, { char: 0 });
         setChar(null);
+        setSorcerer(0);
     };
 
     return (
         <div className={styles.thing}>
-            <img src={!isEmptyObj(selectedThing) ? selectedThing.icon : emptySlot} width="40" height="40" alt={!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}/>
+            <IconThing selectedThing={selectedThing} thingData={thingData} rank={sorcerer} />
             <div>
                 <div className={styles.topThing}>
                     <h3 className={styles.title} onClick={handleClickContent}>{!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}</h3>
-                    { !isEmptyObj(selectedThing) && <p className={styles.levelWrap}>{25 + blacksmith} ур, {char && <><span className={styles.value}>+{char.value}</span> {paramNames[char.param]}</>}</p> }
+                    { !isEmptyObj(selectedThing) && <p className={styles.levelWrap}>{selectedThing.level + blacksmith} ур, {char && <><span className={styles.value}>+{char.value}</span> {paramNames[char.param]}</>}</p> }
                 </div>
 
                 <div className={`${styles.content} ${!isShowContent ? styles.contentHidden : null}`}>
@@ -174,12 +225,17 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
                         <>
                             <ul className={styles.list}>
                                 { selectedThing.params.map((item) => (
+                                    multipliedParams[item.param] > 0 &&
                                     <li className={styles.item} key={item.param} data-param={item.param}>
-                                        {item.label}: {multipliedParams[item.param]}
+                                        {paramNamesTwo[item.param]}: {multipliedParams[item.param]}
                                         <span className={styles.fieldWrap}> (+<input className={styles.field} onChange={handleChangePercent} value={paramPercents[item.param] > 0 ? paramPercents[item.param] : ``} name={item.param} data-param-default={item.value} type="number" placeholder="0"/>%)</span>
                                     </li>
                                 )) }
                             </ul>
+
+                            <div className={styles.rank}>
+                                <span className={styles.item}>Колдун: <input className={styles.field} onChange={handleChangeSorcerer} value={getInputValue(sorcerer)} type="number" placeholder="0"/> <span className={styles.rankText}>ранг</span></span>
+                            </div>
 
                             { charOptions.length > 0 &&
                                 <div>

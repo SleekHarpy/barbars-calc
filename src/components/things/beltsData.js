@@ -1,4 +1,5 @@
 import beltBerserk from "../../assets/images/things/berserk/belt-berserk.png";
+import beltBerserk2 from "../../assets/images/things/berserk/belt-berserk2.png";
 
 
 const belt = {
@@ -12,34 +13,17 @@ const belts = [
     {
         id: 0,
         name: `Пояс Берсерка`,
+        level: 25,
         icon: beltBerserk,
+        iconSorcerer: beltBerserk2,
+        sorcerer: [`health`, `regeneration`,],
         params: [
-            {
-                label: `Сила`,
-                param: `strength`,
-                value: 30,
-            },
-            {
-                label: `Здоровье`,
-                param: `health`,
-                value: 18,
-            },
-            {
-                label: `Энергия`,
-                param: `energy`,
-                value: 30,
-            },
-            {
-                label: `Регенерация`,
-                param: `regeneration`,
-                value: 24,
-            },
-            {
-                label: `Броня`,
-                param: `shield`,
-                value: 18,
-            },
-        ]
+            { param: `strength`, value: 30, },
+            { param: `health`, value: 18, },
+            { param: `energy`, value: 30, },
+            { param: `regeneration`, value: 24, },
+            { param: `shield`, value: 18, },
+        ],
     },
 ];
 

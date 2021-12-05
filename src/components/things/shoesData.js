@@ -1,4 +1,5 @@
 import shoesBerserk from "../../assets/images/things/berserk/shoes-berserk.png";
+import shoesBerserk2 from "../../assets/images/things/berserk/shoes-berserk2.png";
 
 
 const shoesOne = {
@@ -12,29 +13,17 @@ const shoes = [
     {
         id: 0,
         name: `Сапоги Берсерка`,
+        level: 25,
         icon: shoesBerserk,
+        iconSorcerer: shoesBerserk2,
+        sorcerer: [`health`, `shield`,],
         params: [
-            {
-                label: `Сила`,
-                param: `strength`,
-                value: 30,
-            },
-            {
-                label: `Здоровье`,
-                param: `health`,
-                value: 18,
-            },
-            {
-                label: `Энергия`,
-                param: `energy`,
-                value: 54,
-            },
-            {
-                label: `Броня`,
-                param: `shield`,
-                value: 18,
-            },
-        ]
+            { param: `strength`, value: 30, },
+            { param: `health`, value: 18, },
+            { param: `energy`, value: 54, },
+            { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 18, },
+        ],
     },
 ];
 

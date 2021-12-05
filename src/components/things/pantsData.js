@@ -1,4 +1,5 @@
 import pantsBerserk from "../../assets/images/things/berserk/pants-berserk.png";
+import pantsBerserk2 from "../../assets/images/things/berserk/pants-berserk2.png";
 
 
 const pantsOne = {
@@ -12,29 +13,17 @@ const pants = [
     {
         id: 0,
         name: `Штаны Берсерка`,
+        level: 25,
         icon: pantsBerserk,
+        iconSorcerer: pantsBerserk2,
+        sorcerer: [`regeneration`, `shield`,],
         params: [
-            {
-                label: `Сила`,
-                param: `strength`,
-                value: 30,
-            },
-            {
-                label: `Энергия`,
-                param: `energy`,
-                value: 24,
-            },
-            {
-                label: `Регенерация`,
-                param: `regeneration`,
-                value: 18,
-            },
-            {
-                label: `Броня`,
-                param: `shield`,
-                value: 48,
-            },
-        ]
+            { param: `strength`, value: 30, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 18, },
+            { param: `shield`, value: 48, },
+        ],
     },
 ];
 

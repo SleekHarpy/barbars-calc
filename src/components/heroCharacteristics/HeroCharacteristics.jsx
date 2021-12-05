@@ -54,25 +54,26 @@ function HeroCharacteristics({store}) {
         paramNames.forEach((param) => {
             const levelBonus = LEVEL_BONUS * level;
 
+            const quenchingSum = LEVEL_BONUS * quenching;
+
             const sumParam =  sumThings[param] + levelBonus;
 
             const sumCharms = sumParam + charms[param];
 
-            const castle = sumCharms + castles[param];
+            const sumAltarMaster = Math.floor((sumCharms / 100 * (altar + mastery.master)) + sumCharms);
 
-            const sumAltarMaster = Math.ceil((castle / 100 * (altar + mastery.master)) + castle);
+            const sumMasterParam = (mastery[param] / 100 * mastery.master) + mastery[param];
 
-            const quenchingSum = LEVEL_BONUS * quenching;
-
-            const cupsSum = quenchingSum + cups;
-
-            const runesSum = cupsSum + runes[param];
-
-            const combatSkillSum = runesSum + combatSkill;
-
-            const premiumSum = combatSkillSum + premium;
-
-            params[param] = sumAltarMaster + titleBonuses[param] + abilities[param] + mastery[param] + premiumSum;
+            params[param] = sumAltarMaster
+                + cups
+                + titleBonuses[param]
+                + abilities[param]
+                + castles[param]
+                + sumMasterParam
+                + quenchingSum
+                + combatSkill
+                + premium
+                + runes[param];
         });
 
         setParams({...params});
