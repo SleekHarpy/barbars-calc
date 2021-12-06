@@ -15,6 +15,10 @@
   background-position: center left;
 }
 
+.fieldWrap {
+  color: $color-secondary;
+}
+
 .field {
   @include field;
 }

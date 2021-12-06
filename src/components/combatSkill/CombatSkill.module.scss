@@ -12,6 +12,10 @@
   @include defaultStar;
 }
 
+.fieldWrap {
+  color: $color-secondary;
+}
+
 .field {
   @include field;
 }

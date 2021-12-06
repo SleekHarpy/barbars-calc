@@ -10,7 +10,7 @@ function Altar({store}) {
     return (
         <section className={styles.altar}>
             <label className={styles.label}>
-                Алтарь + <input className={styles.field} onChange={handleChangeAltar} type="number" placeholder="0" min="0"/> %
+                Алтарь <span className={styles.fieldWrap}>+<input className={styles.field} onChange={handleChangeAltar} type="number" placeholder="0" min="0"/>%</span>
             </label>
 
         </section>

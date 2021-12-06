@@ -41,8 +41,6 @@ function Stones({onChangeStone, thing}) {
         onChangeStone({...initialState});
     }, [thing]);
 
-    console.log(thing.params)
-
     useEffect(() => {
         let sum = {...initialState};
         Object.keys(initialState).forEach((item) => {

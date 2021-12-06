@@ -11,7 +11,7 @@ function Cups({store}) {
     return (
         <section className={styles.cups}>
             <label className={styles.label}>
-                Бонус кубков +<input className={styles.field} onChange={handleChangeCups} type="number" placeholder="0" min="0"/> ко всем параметрам
+                Бонус кубков <span className={styles.fieldWrap}>+<input className={styles.field} onChange={handleChangeCups} type="number" placeholder="0" min="0"/></span> к параметрам
             </label>
         </section>
     );

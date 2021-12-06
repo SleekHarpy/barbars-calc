@@ -11,7 +11,7 @@ function CombatSkill({store}) {
     return (
         <section className={styles.skill}>
             <label className={styles.label}>
-                Боевой навык +<input className={styles.field} onChange={handleChangeSkill} type="number" placeholder="0" min="0"/> к параметрам
+                Боевой навык <span className={styles.fieldWrap}>+<input className={styles.field} onChange={handleChangeSkill} type="number" placeholder="0" min="0"/></span> к параметрам
             </label>
         </section>
     );

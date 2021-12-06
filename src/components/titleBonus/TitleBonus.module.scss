@@ -22,8 +22,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+
+  color: $color-secondary;
 }
 
 .field {
   @include field;
+}
+
+.label {
+  color: #ffffff;
 }
