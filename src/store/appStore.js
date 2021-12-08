@@ -88,8 +88,8 @@ class AppStore{
         }
     };
 
-    updateMastery(name, value) {
-        this.mastery[name] = value;
+    updateMastery(values) {
+        this.mastery = {...values};
     };
 
     quenchingUpdate(value) {
