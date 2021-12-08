@@ -1,21 +1,11 @@
 @import "src/assets/styles/variables";
 @import "src/assets/styles/mixins";
 
+
 .heroCharacteristics {
   @include divider;
 
   padding: 10px 24px;
-}
-
-.levelWrap {
-  @include divider;
-
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-}
-
-.field {
-  @include field;
 }
 
 .list {

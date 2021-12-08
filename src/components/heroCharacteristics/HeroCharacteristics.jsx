@@ -42,11 +42,7 @@ function HeroCharacteristics({store}) {
         setTotalSum(totalSum);
     }, [params]);
 
-    const handleChangeLevel = (evt) => {
-        const level = Number(evt.target.value);
 
-        store.updateLevel(level);
-    };
 
     const countSum = () => {
         const params = {};
@@ -81,18 +77,6 @@ function HeroCharacteristics({store}) {
 
     return (
         <section className={styles.heroCharacteristics}>
-            <div className={styles.levelWrap}>
-                <input
-                    className={styles.field}
-                    id="level"
-                    type="number"
-                    min="1"
-                    defaultValue={level}
-                    onChange={handleChangeLevel}
-                    placeholder="1"
-                />
-                <label htmlFor="level"> уровень</label>
-            </div>
             <ul className={styles.list}>
                 <li className={`${styles.item} ${styles.itemStrength}`}>
                     сила: <span className={altar > 0 ? styles.value : null}>{params.strength}</span>

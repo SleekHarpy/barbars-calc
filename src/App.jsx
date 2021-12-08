@@ -13,12 +13,14 @@ import Things from "./components/things/things";
 import Cups from "./components/cups/Cups";
 import CombatSkill from "./components/combatSkill/CombatSkill";
 import Premium from "./components/premium/Premium";
+import Level from "./components/level/Level";
 
 function App() {
     const store = appStore;
 
     return (
         <Container>
+            <Level store={store} />
             <HeroCharacteristics store={store} />
             <Cups store={store} />
             <TitleBonus store={store} />
