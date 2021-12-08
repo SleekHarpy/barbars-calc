@@ -68,8 +68,8 @@ class AppStore{
         this.cups = value;
     };
 
-    updateBonuses(name, value) {
-        this.titleBonuses[name] = value;
+    updateBonuses(bonuses) {
+        this.titleBonuses = {...bonuses};
     };
 
     updateAbilities(name, value) {
