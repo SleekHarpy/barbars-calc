@@ -42,10 +42,10 @@ function Abilities({store}) {
         <section className={styles.abilities}>
             <h2 className={styles.title}>Умения</h2>
             <div className={styles.list}>
-                <Ability ability={bers} onChangeAbility={handleChangeBonus} />
-                <Ability ability={reflection} onChangeAbility={handleChangeBonus} />
-                <Ability ability={stone} onChangeAbility={handleChangeBonus} />
-                <Ability ability={energy} onChangeAbility={handleChangeBonus} />
+                <Ability ability={bers} onChangeAbility={handleChangeBonus} store={store} />
+                <Ability ability={reflection} onChangeAbility={handleChangeBonus} store={store} />
+                <Ability ability={stone} onChangeAbility={handleChangeBonus} store={store} />
+                <Ability ability={energy} onChangeAbility={handleChangeBonus} store={store} />
             </div>
         </section>
     );

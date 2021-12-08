@@ -6,25 +6,27 @@ import rareIcon from "../../../assets/images/quality/star-rare.png";
 import epicIcon from "../../../assets/images/quality/star-epic.png";
 import legendIcon from "../../../assets/images/quality/star-legend.png";
 import mifIcon from "../../../assets/images/quality/star-mif.png";
-import { useState } from "react";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 
 const QualityIcon = ({bonus}) => {
     let icon = defaultIcon;
 
     if (bonus) {
-        switch (bonus.label) {
-            case `обычный`: icon = regularIcon;
+        switch (bonus) {
+            case 10: icon = regularIcon;
                 break;
-            case `необычный`: icon = unusualIcon;
+            case 50: icon = unusualIcon;
                 break;
-            case `редкий`: icon = rareIcon;
+            case 100: icon = rareIcon;
                 break;
-            case `эпический`: icon = epicIcon;
+            case 150: icon = epicIcon;
                 break;
-            case `легендарный`: icon = legendIcon;
+            case 200: icon = legendIcon;
                 break;
-            case `мифический`: icon = mifIcon;
+            case 300: icon = mifIcon;
                 break;
             default: icon = defaultIcon;
         }
@@ -33,19 +35,24 @@ const QualityIcon = ({bonus}) => {
     return <img src={icon} width="12" height="12" alt="Бонус"/>
 };
 
-function Ability({ability, abilities, onChangeAbility}) {
-    const [selectedBonus, setSelectedBonus] = useState(null);
+function Ability({ability, onChangeAbility, store}) {
+    const [abilityStorage, setAbilityStorage] = useLocalStorage(`abilities`, 0);
+    const abilities = store.abilities;
+    const abilityItem = store.abilities[ability.param];
+
+    useEffect(() => {
+        if (abilityStorage[ability.param]) onChangeAbility(ability.param, abilityStorage[ability.param]);
+    }, []);
 
     const handleSelectBonus = (evt) => {
-        const label = evt.target.options[evt.target.selectedIndex].text;
         const value = Number(evt.target.value);
 
         if (value !== 0) {
-            setSelectedBonus({label: label, value: value});
             onChangeAbility(ability.param, value);
+            setAbilityStorage({...abilities, [ability.param]: value});
         } else {
-            setSelectedBonus(null);
             onChangeAbility(ability.param, 0);
+            setAbilityStorage({...abilities, [ability.param]: 0});
         }
     };
 
@@ -55,8 +62,8 @@ function Ability({ability, abilities, onChangeAbility}) {
             <div>
                 <h3 className={styles.itemTitle}>{ability.title}</h3>
                 <div className={styles.selectWrap}>
-                    <QualityIcon bonus={selectedBonus} />
-                    <select className={styles.select} onChange={handleSelectBonus} name="bonuses">
+                    <QualityIcon bonus={abilityItem} />
+                    <select className={styles.select} value={abilityItem} onChange={handleSelectBonus} name="bonuses">
                         <option value="0">без бонуса</option>
                         <option value="10">обычный</option>
                         <option value="50">необычный</option>
@@ -66,9 +73,9 @@ function Ability({ability, abilities, onChangeAbility}) {
                         <option value="300">мифический</option>
                     </select>
                 </div>
-                { selectedBonus &&
+                { abilityItem > 0 &&
                     <p className={styles.bonusWrap}>
-                        <span className={styles.bonus}>бонус:</span> <span className={styles.bonusValue}>+{selectedBonus.value}</span> {ability.bonus}
+                        <span className={styles.bonus}>бонус:</span> <span className={styles.bonusValue}>+{abilityItem}</span> {ability.bonus}
                     </p>
                 }
             </div>
@@ -76,4 +83,4 @@ function Ability({ability, abilities, onChangeAbility}) {
     );
 }
 
-export default Ability;
+export default observer(Ability);
