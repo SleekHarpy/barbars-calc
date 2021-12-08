@@ -19,7 +19,6 @@ function Level({store}) {
         setLevelStorage(level);
     };
 
-    console.log(level)
     return (
         <section className={styles.levelWrap}>
             <label className={styles.label} htmlFor="level">Уровень персонажа </label>
