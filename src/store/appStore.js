@@ -28,6 +28,48 @@ class AppStore{
     runes = {...initialState};
     combatSkill = 0;
     premium = 0;
+    things = {
+        helmet: {...initialState},
+        amulet: {...initialState},
+        shoulders: {...initialState},
+        cape: {...initialState},
+        armor: {...initialState},
+        belt: {...initialState},
+        pants: {...initialState},
+        bracelets: {...initialState},
+        gloves: {...initialState},
+        ring: {...initialState},
+        weapon: {...initialState},
+        shoes: {...initialState},
+    };
+    thingCharms = {
+        helmet: {...initialState},
+        amulet: {...initialState},
+        shoulders: {...initialState},
+        cape: {...initialState},
+        armor: {...initialState},
+        belt: {...initialState},
+        pants: {...initialState},
+        bracelets: {...initialState},
+        gloves: {...initialState},
+        ring: {...initialState},
+        weapon: {...initialState},
+        shoes: {...initialState},
+    };
+    thingRunes = {
+        helmet: {...initialState},
+        amulet: {...initialState},
+        shoulders: {...initialState},
+        cape: {...initialState},
+        armor: {...initialState},
+        belt: {...initialState},
+        pants: {...initialState},
+        bracelets: {...initialState},
+        gloves: {...initialState},
+        ring: {...initialState},
+        weapon: {...initialState},
+        shoes: {...initialState},
+    };
 
     constructor() {
         makeObservable(this, {
@@ -45,6 +87,9 @@ class AppStore{
             runes: observable,
             combatSkill: observable,
             premium: observable,
+            things: observable,
+            thingCharms: observable,
+            thingRunes: observable,
             updateLevel: action,
             updateCups: action,
             updateBonuses: action,
@@ -57,6 +102,7 @@ class AppStore{
             updateRunes: action,
             updateCombatSkill: action,
             updatePremium: action,
+            updateThings: action,
         });
     };
 
@@ -115,6 +161,41 @@ class AppStore{
 
     updateRunes(runes) {
         this.runes = runes;
+    };
+
+    updateThings(thing, values, type) {
+        if (type === `things`) {
+            this.things = {...this.things, [thing]: {...initialState, ...values}};
+            this.countSumParams(this.things, `things`);
+        }
+        else if (type === `charms`) {
+            this.thingCharms = {...this.thingCharms, [thing]: {...initialState, ...values}};
+            this.countSumParams(this.thingCharms, `charms`);
+        }
+        else if (type === `runes`) {
+            this.thingRunes = {...this.thingRunes, [thing]: {...initialState, ...values}};
+            this.countSumParams(this.thingRunes, `runes`);
+        }
+    };
+
+    countSumParams(things, updateStore) {
+        const counted = {};
+
+        Object.keys({...initialState})
+            .map((item) => Object.values(things)
+                .map((el) => el[item])
+                .reduce((prev, key) => counted[item] = prev + key, 0));
+
+        switch (updateStore) {
+            case `things`: this.updateSumThings({...counted});
+                break;
+            case `charms`: this.updateCharms({...counted});
+                break;
+            case `runes`: this.updateRunes({...counted});
+                break;
+            default:
+                throw new Error();
+        }
     };
 }
 

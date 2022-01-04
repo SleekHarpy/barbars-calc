@@ -1,6 +1,7 @@
 import styles from './runes.module.scss';
 import {useEffect, useState} from "react";
 import { getInputValue } from "../../../utils/common";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 
 const paramNames = {
@@ -11,35 +12,43 @@ const paramNames = {
     shield: `брони`,
 };
 
-function Runes({onChangeRunes, thing, resetStatus}) {
+function Runes({store, thing, resetStatus}) {
+    const [thingStorage, , , updateThingStorage] = useLocalStorage(thing.thing);
     const [runes, setRunes] = useState({
         param: ``,
         value: 0,
     });
 
     useEffect(() => {
-        if (runes.param !== ``) onChangeRunes(thing.thing, { [runes.param]: runes.value });
-        else onChangeRunes(thing.thing, { [runes.param]: 0 });
+        if (thingStorage?.runes) {
+            setRunes({
+                param: thingStorage.runes.param,
+                value: thingStorage.runes.value,
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (runes.param !== ``) store.updateThings(thing.thing, { [runes.param]: runes.value }, `runes`);
+        else store.updateThings(thing.thing, { [runes.param]: 0 }, `runes`);
     }, [runes]);
 
     useEffect(() => {
-        // console.log(resetStatus);
         if (resetStatus) {
             setRunes({param: ``, value: 0})
-            onChangeRunes(thing.thing, { [runes.param]: 0 });
+            store.updateThings(thing.thing, { [runes.param]: 0 }, `runes`);
         }
     }, [resetStatus]);
-
-
-
 
     const handleChangeRunes = (evt) => {
         const value = evt.target.value;
 
         if (value !== ``) {
             setRunes({...runes, param: value});
+            updateThingStorage({runes: {...runes, param: value}});
         } else {
             setRunes({...runes, param: ``});
+            updateThingStorage({runes: {...runes, param: ``}});
         }
     };
 
@@ -48,8 +57,10 @@ function Runes({onChangeRunes, thing, resetStatus}) {
 
         if (value !== 0) {
             setRunes({...runes, value: value});
+            updateThingStorage({runes: {...runes, value: value}});
         } else {
             setRunes({...runes, value: 0});
+            updateThingStorage({runes: {...runes, value: 0}});
         }
     };
 

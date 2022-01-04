@@ -21,7 +21,30 @@ const useLocalStorage = (key, initialValue) => {
         }
     };
 
-    return [storedValue, setValue];
+    const removeValue = (objKey) => {
+        try {
+            if (objKey) {
+                const newKey = JSON.parse(window.localStorage.getItem(key));
+                delete newKey[objKey];
+                window.localStorage.setItem(key, JSON.stringify({...newKey}));
+            } else {
+                window.localStorage.removeItem(key);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const updateValue = (value) => {
+        try {
+            const oldValue = JSON.parse(window.localStorage.getItem(key));
+            window.localStorage.setItem(key, JSON.stringify({...oldValue, ...value}));
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return [storedValue, setValue, removeValue, updateValue];
 };
 
 export default useLocalStorage;

@@ -1,9 +1,10 @@
 import styles from './thing.module.scss';
 import emptySlot from '../../../assets/images/empty-slot.png';
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Stones from "../stones/stones";
 import Runes from "../runes/runes";
 import { getInputValue, isEmptyObj } from "../../../utils/common";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 
 const magicianValues = [75, 100, 150, 200, 250, 350];
@@ -34,20 +35,13 @@ const initialState = {
 
 const generateMagicianOptions = (params) => {
     const options = [];
-    const oneOptions = [];
-    const twoOptions = [];
+    let index = 1;
 
     magicianValues.forEach((item) => {
-        oneOptions.push({ param: params[0], paramName: paramNames[params[0]], value: item });
+        options.push({ id: index, param: params[0], paramName: paramNames[params[0]], value: item });
+        options.push({ id: index + 1, param: params[1], paramName: paramNames[params[1]], value: item });
+        index += 2;
     });
-    magicianValues.forEach((item) => {
-        twoOptions.push({ param: params[1], paramName: paramNames[params[1]], value: item });
-    });
-
-    for (let i = 0; i < magicianValues.length; i++) {
-        options.push(oneOptions[i]);
-        options.push(twoOptions[i]);
-    }
 
     return options;
 };
@@ -72,47 +66,100 @@ function IconThing({selectedThing, thingData, rank}) {
     );
 }
 
-function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingData}) {
+const thingStateReducer = (state, action) => {
+    switch (action.type) {
+        case 'paramPercents':
+            return {...state, paramPercents: {...action.payload}};
+        case 'multipliedParams':
+            return {...state, multipliedParams: {...action.payload}};
+        case 'sorcerer':
+            return {...state, sorcerer: action.payload};
+        case 'blacksmith':
+            return {...state, blacksmith: action.payload}
+        default:
+            throw new Error();
+    }
+};
+
+function Thing({store, things, thingData}) {
+    const [thingStorage, setThingStorage, removeThingStorage, updateThingStorage] = useLocalStorage(thingData.thing);
+
     const [isShowContent, setShowContent] = useState(false);
     const [isReset, setIsReset] = useState(false);
 
     const [selectedThing, setSelectedThing] = useState({});
     const [charOptions, setCharOptions] = useState([]);
     const [char, setChar] = useState(null);
-
-    const [multipliedParams, setMultipliedParams] = useState(null);
-    const [paramPercents, setParamPercents] = useState(null);
-    const [blacksmith, setBlacksmith] = useState(0);
-    const [sorcerer, setSorcerer] = useState(0)
-
     const [stones, setStones] = useState({...initialState});
 
+    const [thingState, dispatchThingState] = useReducer(thingStateReducer, {
+        multipliedParams: null,
+        paramPercents: {...initialState},
+        blacksmith: 0,
+        sorcerer: 0,
+    });
+
+    // Заполнение из localStorage
     useEffect(() => {
-        const params = {};
-        const percents = {};
+        if (thingStorage && Object.keys(selectedThing).length === 0) {
+            let newThingState = {...thingState}
+            updateSelectedThing({...thingStorage.selectedThing});
 
-        if (!isEmptyObj(selectedThing)) {
-            selectedThing.params.map((item) => params[item.param] = item.value);
-            selectedThing.params.map((item) => percents[item.param] = 0);
+            if (thingStorage.paramPercents) {
+                newThingState.paramPercents = thingStorage.paramPercents;
+                updateParamPercents(thingStorage.paramPercents);
+            }
 
-            setMultipliedParams({...params});
-            setParamPercents({...percents});
+            if (thingStorage.sorcerer) {
+                newThingState.sorcerer = thingStorage.sorcerer;
+                dispatchThingState({type: `sorcerer`, payload: thingStorage.sorcerer});
+            }
+
+            if (thingStorage.blacksmith) {
+                newThingState.blacksmith = thingStorage.blacksmith;
+                dispatchThingState({type: `blacksmith`, payload: thingStorage.blacksmith});
+            }
+
+            if (thingStorage.char) {
+                let param = thingStorage.char.param;
+                let value = thingStorage.char.value;
+                let id = thingStorage.char.id;
+
+                setChar({ id: id, param: [param], value: value });
+                store.updateThings(thingData.thing, { [param]: value }, `charms`);
+            }
+
+            countSumParam({
+                thing: thingStorage.selectedThing,
+                percents: newThingState.paramPercents,
+                newBlacksmith: newThingState.blacksmith,
+                newSorcerer: newThingState.sorcerer,
+            });
         }
-    }, [selectedThing]);
+
+    }, []);
+
+    const updateSelectedThing = (thing) => {
+        const params = {};
+
+        setSelectedThing(thing);
+        thing.params.map((item) => params[item.param] = item.value);
+
+        updateMultipliedParams({...params});
+    }
 
     useEffect(() => {
         if (thingData) setCharOptions(generateMagicianOptions(thingData.magicianParams));
     }, [thingData]);
 
-    useEffect(() => {
-        if (multipliedParams !== null) handleUpdateThings(thingData.thing, multipliedParams);
-    }, [multipliedParams]);
+    const updateMultipliedParams = (params) => {
+        dispatchThingState({type: `multipliedParams`, payload: params})
+        store.updateThings(thingData.thing, params, `things`);
+    };
 
-    useEffect(() => {
-        if (!isEmptyObj(selectedThing)) {
-            countSumParam();
-        }
-    }, [paramPercents, blacksmith, stones, sorcerer]);
+    const updateParamPercents = (percents) => {
+        dispatchThingState({type: 'paramPercents', payload: percents});
+    };
 
     const handleClickContent = () => {
         setShowContent(!isShowContent);
@@ -122,11 +169,13 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
         const value = evt.target.value;
 
         if (value !== `empty`) {
-            setSelectedThing(things[value]);
+            updateSelectedThing(things[value]);
             setIsReset(false);
+            setThingStorage({selectedThing: things[value]});
         } else {
             setIsReset(true);
             setTimeout(reset, 10); // для сброса рун
+            removeThingStorage();
         }
     };
 
@@ -134,86 +183,130 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
         const name = evt.target.name;
         const percent = Number(evt.target.value);
 
-        setParamPercents({...paramPercents, [name]: percent});
+        updateParamPercents({...thingState.paramPercents, [name]: percent});
+        countSumParam({percents: {...thingState.paramPercents, [name]: percent}});
+        updateThingStorage({paramPercents: {...thingState.paramPercents, [name]: percent}});
     };
 
-    const countSumParam = () => {
+    const countSumParam = (updateParams) => {
+        const {
+            thing = selectedThing,
+            percents = thingState.paramPercents,
+            newBlacksmith = thingState.blacksmith,
+            newStones = stones,
+            newSorcerer = thingState.sorcerer,
+        } = updateParams;
         const newMultipliedParams = {};
 
-        selectedThing.params.forEach((item) => {
+        thing.params.forEach((item) => {
             let totalSum = 0;
 
-            const sumPercentParam = ((item.value / 100) * paramPercents[item.param]) + item.value;
-            const sumBlacksmith = ((sumPercentParam / 100) * blacksmith) + sumPercentParam;
-            totalSum = ((sumBlacksmith / 100) * stones[item.param]) + sumBlacksmith;
+            const sumPercentParam = ((item.value / 100) * percents[item.param]) + item.value;
+            const sumBlacksmith = ((sumPercentParam / 100) * newBlacksmith) + sumPercentParam;
+            totalSum = ((sumBlacksmith / 100) * newStones[item.param]) + sumBlacksmith;
 
-            if (selectedThing.sorcerer.includes(item.param)) {
-                const sumSorcererPercent = ((sorcerer / 100) * paramPercents[item.param]) + sorcerer;
-                const sumSorcererBlacksmith = ((sumSorcererPercent / 100) * blacksmith) + sumSorcererPercent;
-                const sumSorcererStone = ((sumSorcererBlacksmith / 100) * stones[item.param]) + sumSorcererBlacksmith;
+            if (thing.sorcerer.includes(item.param)) {
+                const sumSorcererPercent = ((newSorcerer / 100) * percents[item.param]) + newSorcerer;
+                const sumSorcererBlacksmith = ((sumSorcererPercent / 100) * newBlacksmith) + sumSorcererPercent;
+                const sumSorcererStone = ((sumSorcererBlacksmith / 100) * newStones[item.param]) + sumSorcererBlacksmith;
                 totalSum += sumSorcererStone;
             }
 
             newMultipliedParams[item.param] = Math.floor(totalSum);
         });
 
-        setMultipliedParams({...newMultipliedParams});
+        updateMultipliedParams({...newMultipliedParams});
     };
 
     const handleChangeChar = (evt) => {
         const param = evt.target.options[evt.target.selectedIndex].dataset.magicianParam;
-        const value = Number(evt.target.value);
+        const value = Number(evt.target.options[evt.target.selectedIndex].dataset.magicianValue);
+        const id = Number(evt.target.value);
 
         if (value !== 0) {
-            setChar({ param: [param], value: value });
-            onUpdateChar(thingData.thing, { [param]: value });
+            setChar({ id: id, param: [param], value: value });
+            store.updateThings(thingData.thing, { [param]: value }, `charms`);
+            updateThingStorage({char: { id: id, param: [param], value: value }});
         } else {
             setChar(null);
-            onUpdateChar(thingData.thing, { [param]: 0 });
+            store.updateThings(thingData.thing, { [param]: 0 }, `charms`);
+            removeThingStorage(`char`);
         }
     };
 
     const incrementBlacksmith = () => {
-        if (blacksmith < 60) setBlacksmith((prev) => prev + 5);
+        const blacksmith = thingState.blacksmith;
+
+        if (blacksmith < 60) {
+            dispatchThingState({type: `blacksmith`, payload: blacksmith + 5});
+            countSumParam({newBlacksmith: blacksmith + 5});
+            updateThingStorage({blacksmith: blacksmith + 5});
+        }
     };
 
     const decrementBlacksmith = () => {
-        if (blacksmith > 0) setBlacksmith((prev) => prev - 5);
+        const blacksmith = thingState.blacksmith;
+
+        if (blacksmith > 0) {
+            const blacksmithCount = blacksmith - 5;
+
+            dispatchThingState({type: `blacksmith`, payload: blacksmithCount});
+            countSumParam({newBlacksmith: blacksmithCount});
+            updateThingStorage({blacksmith: blacksmithCount});
+
+            if (blacksmithCount === 0) {
+                removeThingStorage(`blacksmith`);
+            }
+        }
     };
 
     const handleChangeSorcerer = (evt) => {
         const value = Number(evt.target.value);
 
-        if (value > 0 && sorcerer === 0) {
+        updateSorcerer(value);
+    };
+
+    const updateSorcerer = (value) => {
+        if (value > 0 && thingState.sorcerer === 0 && !selectedThing) {
             selectedThing.params.forEach((item) => {
-                item.value === 0 && setParamPercents({...paramPercents, [item.param]: 250});
+                item.value === 0 && updateParamPercents({...thingState.paramPercents, [item.param]: 250});
             })
         }
 
-        setSorcerer(value);
-    }
+        dispatchThingState({type: `sorcerer`, payload: value});
+        countSumParam({newSorcerer: value});
+        if (value > 0) updateThingStorage({sorcerer: value});
+        else removeThingStorage(`sorcerer`);
+    };
+
+    const handleChangeStones = (state) => {
+        setStones({...state});
+        countSumParam({newStones: {...state}});
+    };
 
     const reset = () => {
         setSelectedThing({});
-        setMultipliedParams({...initialState});
-        setBlacksmith(0);
-        onUpdateChar(thingData.thing, { char: 0 });
+        updateMultipliedParams({...initialState});
+        store.updateThings(thingData.thing, { char: 0 }, `charms`);
         setChar(null);
-        setSorcerer(0);
+        dispatchThingState({type: `sorcerer`, payload: 0});
+        dispatchThingState({type: `blacksmith`, payload: 0});
+        dispatchThingState({type: `paramPercents`, payload: {...initialState}});
+        removeThingStorage();
     };
 
     return (
         <div className={styles.thing}>
-            <IconThing selectedThing={selectedThing} thingData={thingData} rank={sorcerer} />
+            <IconThing selectedThing={selectedThing} thingData={thingData} rank={thingState.sorcerer} />
             <div>
                 <div className={styles.topThing}>
                     <h3 className={styles.title} onClick={handleClickContent}>{!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}</h3>
-                    { !isEmptyObj(selectedThing) && <p className={styles.levelWrap}>{selectedThing.level + blacksmith} ур, {char && <><span className={styles.value}>+{char.value}</span> {paramNames[char.param]}</>}</p> }
+                    { !isEmptyObj(selectedThing) && <p className={styles.levelWrap}>{selectedThing.level + thingState.blacksmith} ур, {char && <><span className={styles.value}>+{char.value}</span> {paramNames[char.param]}</>}</p> }
                 </div>
 
                 <div className={`${styles.content} ${!isShowContent ? styles.contentHidden : null}`}>
                     {things &&
-                        <select className={styles.select} onChange={handleChangeThing}>
+                        <select className={styles.select} onChange={handleChangeThing} value={selectedThing?.id ?? "empty"}>
                             <option value="empty">{thingData.title}</option>
                             { things.map((thing) => (
                                 <option value={thing.id} key={thing.id}>{thing.name}</option>
@@ -221,46 +314,46 @@ function Thing({handleUpdateThings, onUpdateChar, onUpdateRunes, things, thingDa
                         </select>
                     }
 
-                    { (!isEmptyObj(selectedThing) && multipliedParams) &&
+                    { (!isEmptyObj(selectedThing) && thingState.multipliedParams) &&
                         <>
                             <ul className={styles.list}>
                                 { selectedThing.params.map((item) => (
-                                    multipliedParams[item.param] > 0 &&
+                                    thingState.multipliedParams[item.param] > 0 &&
                                     <li className={styles.item} key={item.param} data-param={item.param}>
-                                        {paramNamesTwo[item.param]}: {multipliedParams[item.param]}
-                                        <span className={styles.fieldWrap}> (+<input className={styles.field} onChange={handleChangePercent} value={paramPercents[item.param] > 0 ? paramPercents[item.param] : ``} name={item.param} data-param-default={item.value} type="number" placeholder="0"/>%)</span>
+                                        {paramNamesTwo[item.param]}: {thingState.multipliedParams[item.param]}
+                                        <span className={styles.fieldWrap}> (+<input className={styles.field} onChange={handleChangePercent} value={thingState.paramPercents[item.param] > 0 ? thingState.paramPercents[item.param] : ``} name={item.param} data-param-default={item.value} type="number" placeholder="0"/>%)</span>
                                     </li>
                                 )) }
                             </ul>
 
                             <div className={styles.rank}>
-                                <span className={styles.item}>Колдун: <input className={styles.field} onChange={handleChangeSorcerer} value={getInputValue(sorcerer)} type="number" placeholder="0"/> <span className={styles.rankText}>ранг</span></span>
+                                <span className={styles.item}>Колдун: <input className={styles.field} onChange={handleChangeSorcerer} value={getInputValue(thingState.sorcerer)} type="number" placeholder="0"/> <span className={styles.rankText}>ранг</span></span>
                             </div>
 
                             { charOptions.length > 0 &&
                                 <div>
                                     <span className={styles.item}>Чары: </span>
-                                    <select className={styles.select} onChange={handleChangeChar}>
-                                        <option value="0">Без бонуса</option>
-                                        { charOptions.map((option, index) => (
-                                            <option value={option.value} data-magician-param={option.param} key={option.value + index}>+{option.value} {option.paramName}</option>
+                                    <select className={styles.select} onChange={handleChangeChar} value={char?.id ?? '0'}>
+                                        <option value="0" data-magician-value="0">Без бонуса</option>
+                                        { charOptions.map((option) => (
+                                            <option value={option.id} data-magician-param={option.param} data-magician-value={option.value} key={option.id}>+{option.value} {option.paramName}</option>
                                         )) }
                                     </select>
                                 </div>
                             }
 
-                            <Runes onChangeRunes={onUpdateRunes} thing={thingData} resetStatus={isReset} />
+                            <Runes store={store} thing={thingData} resetStatus={isReset} />
 
                             <div>
                                 <span className={styles.item}>Кузнец: </span>
-                                <button className={styles.btnCounter} onClick={decrementBlacksmith} type="button" disabled={blacksmith === 0}>-</button>
-                                <span className={styles.blacksmithValue}> {blacksmith} </span>
-                                <button className={styles.btnCounter} onClick={incrementBlacksmith} type="button" disabled={blacksmith === 60}>+</button>
+                                <button className={styles.btnCounter} onClick={decrementBlacksmith} type="button" disabled={thingState.blacksmith === 0}>-</button>
+                                <span className={styles.blacksmithValue}> {thingState.blacksmith} </span>
+                                <button className={styles.btnCounter} onClick={incrementBlacksmith} type="button" disabled={thingState.blacksmith === 60}>+</button>
                                 <> ур. </>
-                                <span className={styles.fieldWrap}>(+{blacksmith}%)</span>
+                                <span className={styles.fieldWrap}>(+{thingState.blacksmith}%)</span>
                             </div>
 
-                            <Stones onChangeStone={setStones} thing={selectedThing} />
+                            <Stones onChangeStone={handleChangeStones} thing={selectedThing} params={thingState.multipliedParams} thingType={thingData.thing} />
                         </>
                     }
 
