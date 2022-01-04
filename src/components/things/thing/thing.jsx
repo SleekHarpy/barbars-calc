@@ -103,7 +103,7 @@ function Thing({store, things, thingData}) {
     useEffect(() => {
         if (thingStorage && Object.keys(selectedThing).length === 0) {
             let newThingState = {...thingState}
-            updateSelectedThing({...thingStorage.selectedThing});
+            updateSelectedThing({...things[thingStorage.selectedThingId]});
 
             if (thingStorage.paramPercents) {
                 newThingState.paramPercents = thingStorage.paramPercents;
@@ -130,7 +130,7 @@ function Thing({store, things, thingData}) {
             }
 
             countSumParam({
-                thing: thingStorage.selectedThing,
+                thing: things[thingStorage.selectedThingId],
                 percents: newThingState.paramPercents,
                 newBlacksmith: newThingState.blacksmith,
                 newSorcerer: newThingState.sorcerer,
@@ -159,6 +159,7 @@ function Thing({store, things, thingData}) {
 
     const updateParamPercents = (percents) => {
         dispatchThingState({type: 'paramPercents', payload: percents});
+        !isEmptyParams(percents) ? updateThingStorage({paramPercents: {...percents}}) : removeThingStorage(`paramPercents`);
     };
 
     const handleClickContent = () => {
@@ -171,7 +172,7 @@ function Thing({store, things, thingData}) {
         if (value !== `empty`) {
             updateSelectedThing(things[value]);
             setIsReset(false);
-            setThingStorage({selectedThing: things[value]});
+            setThingStorage({selectedThingId: Number(value)});
         } else {
             setIsReset(true);
             setTimeout(reset, 10); // для сброса рун
@@ -186,7 +187,6 @@ function Thing({store, things, thingData}) {
 
         updateParamPercents({...newPercents});
         countSumParam({percents: {...newPercents}});
-        !isEmptyParams(newPercents) ? updateThingStorage({paramPercents: {...newPercents}}) : removeThingStorage(`paramPercents`);
     };
 
     const countSumParam = (updateParams) => {
@@ -268,7 +268,7 @@ function Thing({store, things, thingData}) {
     };
 
     const updateSorcerer = (value) => {
-        if (value > 0 && thingState.sorcerer === 0 && !selectedThing) {
+        if (value > 0 && thingState.sorcerer === 0) {
             selectedThing.params.forEach((item) => {
                 item.value === 0 && updateParamPercents({...thingState.paramPercents, [item.param]: 250});
             })
