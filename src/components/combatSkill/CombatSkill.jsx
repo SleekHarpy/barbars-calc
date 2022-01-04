@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 
 function CombatSkill({store}) {
-    const [combatSkillStorage, setCombatSkillStorage] = useLocalStorage(`combatSkill`);
+    const [combatSkillStorage, setCombatSkillStorage, removeCombatSkillStorage] = useLocalStorage(`combatSkill`);
     const combatSkill = store.combatSkill;
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function CombatSkill({store}) {
         const value = Number(evt.target.value);
 
         store.updateCombatSkill(value);
-        setCombatSkillStorage(value);
+        value > 0 ? setCombatSkillStorage(value) : removeCombatSkillStorage();
     };
 
     return (

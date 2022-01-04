@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 
 
 function Quenching({store}) {
-    const [quenchingStorage, setQuenchingStorage] = useLocalStorage(`quenching`);
+    const [quenchingStorage, setQuenchingStorage, removeQuenchingStorage] = useLocalStorage(`quenching`);
     const quenching = store.quenching;
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function Quenching({store}) {
         const value = Number(evt.target.value);
 
         store.quenchingUpdate(value);
-        setQuenchingStorage(value);
+        value > 0 ? setQuenchingStorage(value) : removeQuenchingStorage();
     };
 
     return (

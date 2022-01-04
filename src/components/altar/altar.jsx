@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { getInputValue } from "../../utils/common";
 
 function Altar({store}) {
-    const [altarStorage, setAltarStorage] = useLocalStorage(`altar`, 0);
+    const [altarStorage, setAltarStorage, removeAltarStorage] = useLocalStorage(`altar`, 0);
     const altar = store.altar;
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function Altar({store}) {
       const value = Number(evt.target.value);
 
       store.updateAltar(value);
-      setAltarStorage(value);
+      value > 0 ? setAltarStorage(value) : removeAltarStorage();
     };
 
     return (

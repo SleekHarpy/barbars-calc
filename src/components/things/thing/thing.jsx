@@ -3,7 +3,7 @@ import emptySlot from '../../../assets/images/empty-slot.png';
 import { useEffect, useReducer, useState } from "react";
 import Stones from "../stones/stones";
 import Runes from "../runes/runes";
-import { getInputValue, isEmptyObj } from "../../../utils/common";
+import { getInputValue, isEmptyObj, isEmptyParams } from "../../../utils/common";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 
 
@@ -182,10 +182,11 @@ function Thing({store, things, thingData}) {
     const handleChangePercent = (evt) => {
         const name = evt.target.name;
         const percent = Number(evt.target.value);
+        const newPercents = {...thingState.paramPercents, [name]: percent}
 
-        updateParamPercents({...thingState.paramPercents, [name]: percent});
-        countSumParam({percents: {...thingState.paramPercents, [name]: percent}});
-        updateThingStorage({paramPercents: {...thingState.paramPercents, [name]: percent}});
+        updateParamPercents({...newPercents});
+        countSumParam({percents: {...newPercents}});
+        !isEmptyParams(newPercents) ? updateThingStorage({paramPercents: {...newPercents}}) : removeThingStorage(`paramPercents`);
     };
 
     const countSumParam = (updateParams) => {

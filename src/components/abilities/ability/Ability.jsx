@@ -9,6 +9,7 @@ import mifIcon from "../../../assets/images/quality/star-mif.png";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { isEmptyParams } from "../../../utils/common";
 
 
 const QualityIcon = ({bonus}) => {
@@ -36,7 +37,7 @@ const QualityIcon = ({bonus}) => {
 };
 
 function Ability({ability, onChangeAbility, store}) {
-    const [abilityStorage, setAbilityStorage] = useLocalStorage(`abilities`, 0);
+    const [abilityStorage, setAbilityStorage, removeAbilityStorage] = useLocalStorage(`abilities`, 0);
     const abilities = store.abilities;
     const abilityItem = store.abilities[ability.param];
 
@@ -46,13 +47,15 @@ function Ability({ability, onChangeAbility, store}) {
 
     const handleSelectBonus = (evt) => {
         const value = Number(evt.target.value);
+        const newAbilities = {...abilities, [ability.param]: value}
 
         if (value !== 0) {
             onChangeAbility(ability.param, value);
-            setAbilityStorage({...abilities, [ability.param]: value});
+            setAbilityStorage({...newAbilities});
         } else {
             onChangeAbility(ability.param, 0);
-            setAbilityStorage({...abilities, [ability.param]: 0});
+            isEmptyParams(newAbilities) ? removeAbilityStorage() : setAbilityStorage({...newAbilities});
+
         }
     };
 

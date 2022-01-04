@@ -5,7 +5,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 
 
 function Premium({store}) {
-    const [premiumStorage, setPremiumStorage] = useLocalStorage(`premium`);
+    const [premiumStorage, setPremiumStorage, removePremiumStorage] = useLocalStorage(`premium`);
     const [isPremium, setIsPremium] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function Premium({store}) {
 
         setIsPremium(isChecked);
         store.updatePremium(isChecked);
-        setPremiumStorage(isChecked);
+        isChecked ? setPremiumStorage(isChecked) : removePremiumStorage();
     };
 
     return (

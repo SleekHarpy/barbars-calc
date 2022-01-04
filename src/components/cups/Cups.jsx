@@ -6,18 +6,18 @@ import { observer } from "mobx-react-lite";
 
 
 function Cups({store}) {
-    const [cupsStorage, setCupStorage] = useLocalStorage(`cups`, 0);
+    const [cupsStorage, setCupStorage, removeCupStorage] = useLocalStorage(`cups`);
     const cups = store.cups;
 
     useEffect(() => {
         if (cupsStorage) store.updateCups(cupsStorage);
-    })
+    }, []);
 
     const handleChangeCups = (evt) => {
         const value = Number(evt.target.value);
 
         store.updateCups(value);
-        setCupStorage(value);
+        value > 0 ? setCupStorage(value) : removeCupStorage();
     };
 
     return (

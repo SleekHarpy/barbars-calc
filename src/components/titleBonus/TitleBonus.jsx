@@ -1,12 +1,12 @@
 import styles from './TitleBonus.module.scss';
 import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import { getInputValue } from "../../utils/common";
+import { getInputValue, isEmptyParams } from "../../utils/common";
 import { useEffect } from "react";
 
 
 function TitleBonus({store}) {
-    const [titleBonusStorage, setTitleBonusStorage] = useLocalStorage(`titleBonusStorage`, 0);
+    const [titleBonusStorage, setTitleBonusStorage, removeTitleBonusStorage] = useLocalStorage(`titleBonusStorage`);
     const titleBonus = store.titleBonuses;
 
     useEffect(() => {
@@ -16,9 +16,10 @@ function TitleBonus({store}) {
     const handleChangeBonus = (evt) => {
         const name = evt.target.name;
         const value = Number(evt.target.value);
+        const newTitleBonuses = {...titleBonus, [name]: value}
 
-        store.updateBonuses({...titleBonus, [name]: value});
-        setTitleBonusStorage({...titleBonus, [name]: value});
+        store.updateBonuses({...newTitleBonuses});
+        !isEmptyParams(newTitleBonuses) ? setTitleBonusStorage({...newTitleBonuses}) : removeTitleBonusStorage();
     };
 
     return (

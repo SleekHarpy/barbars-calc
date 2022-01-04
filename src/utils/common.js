@@ -6,7 +6,12 @@ const isEmptyObj = (obj) => {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
+const isEmptyParams = (params) => {
+    return Object.values(params).filter(item => item > 0).length === 0;
+}
+
 export {
     getInputValue,
     isEmptyObj,
+    isEmptyParams,
 };

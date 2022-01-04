@@ -1,12 +1,12 @@
 import styles from './mastery.module.scss';
 import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import { getInputValue } from "../../utils/common";
+import { getInputValue, isEmptyParams } from "../../utils/common";
 import { useEffect } from "react";
 
 
 function Mastery({store}) {
-    const [masteryStorage, setMasteryStorage] = useLocalStorage(`mastery`);
+    const [masteryStorage, setMasteryStorage, removeMasteryStorage] = useLocalStorage(`mastery`);
     const mastery = store.mastery;
 
     useEffect(() => {
@@ -16,9 +16,10 @@ function Mastery({store}) {
     const handleChangeBonus = (evt) => {
         const name = evt.target.name;
         const value = Number(evt.target.value);
+        const newMastery = {...mastery, [name]: value}
 
-        store.updateMastery({...mastery, [name]: value});
-        setMasteryStorage({...mastery, [name]: value});
+        store.updateMastery({...newMastery});
+        isEmptyParams(newMastery) ? removeMasteryStorage() : setMasteryStorage({...newMastery});
     };
 
     return (
