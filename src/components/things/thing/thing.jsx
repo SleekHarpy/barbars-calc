@@ -301,11 +301,11 @@ function Thing({store, things, thingData}) {
             <IconThing selectedThing={selectedThing} thingData={thingData} rank={thingState.sorcerer} />
             <div>
                 <div className={styles.topThing}>
-                    <h3 className={styles.title} onClick={handleClickContent}>{!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}</h3>
+                    <h3 className={`${styles.title} ${isShowContent ? styles.titleOpened : ``}`} onClick={handleClickContent}>{!isEmptyObj(selectedThing) ? selectedThing.name : thingData.title}</h3>
                     { !isEmptyObj(selectedThing) && <p className={styles.levelWrap}>{selectedThing.level + thingState.blacksmith} ур, {char && <><span className={styles.value}>+{char.value}</span> {paramNames[char.param]}</>}</p> }
                 </div>
 
-                <div className={`${styles.content} ${!isShowContent ? styles.contentHidden : null}`}>
+                <div className={`${styles.content} ${!isShowContent ? styles.contentHidden : ``}`}>
                     {things &&
                         <select className={styles.select} onChange={handleChangeThing} value={selectedThing?.id ?? "empty"}>
                             <option value="empty">{thingData.title}</option>

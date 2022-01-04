@@ -17,13 +17,41 @@
 }
 
 .title {
+  position: relative;
   margin: 0;
   margin-bottom: 2px;
+  padding-right: 12px;
+
+  width: max-content;
 
   font-size: 14px;
   font-weight: 400;
 
   cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: calc(50% - 2px);
+    right: 0;
+    transform: translateX(-50%) rotate(40deg);
+
+    display: block;
+    width: 0;
+    height: 0;
+
+    border-top: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+    content: "";
+  }
+}
+
+.titleOpened {
+  padding-right: 14px;
+
+  &::before {
+    top: 25%;
+    transform: translateX(-50%) rotate(135deg);
+  }
 }
 
 .levelWrap {
