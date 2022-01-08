@@ -14,6 +14,7 @@ import Premium from '../../components/premium/Premium';
 import Things from '../../components/things/things';
 import Reset from '../../components/reset/Reset';
 import { useRef } from 'react';
+import Stronghold from '../../components/stronghold/Stronghold';
 
 
 function MainScreen({store}) {
@@ -33,6 +34,7 @@ function MainScreen({store}) {
             <Quenching store={store} />
             <CombatSkill store={store} />
             <Premium store={store} />
+            <Stronghold />
             <Things store={store} />
             <Reset store={store} onReset={resetRef} />
         </Container>
