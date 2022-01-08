@@ -6,10 +6,10 @@ import rareIcon from "../../../assets/images/quality/star-rare.png";
 import epicIcon from "../../../assets/images/quality/star-epic.png";
 import legendIcon from "../../../assets/images/quality/star-legend.png";
 import mifIcon from "../../../assets/images/quality/star-mif.png";
-import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import { isEmptyParams } from "../../../utils/common";
+import { useEffect } from "react";
 
 
 const QualityIcon = ({bonus}) => {
@@ -40,6 +40,11 @@ function Ability({ability, onChangeAbility, store}) {
     const [abilityStorage, setAbilityStorage, removeAbilityStorage] = useLocalStorage(`abilities`, 0);
     const abilities = store.abilities;
     const abilityItem = store.abilities[ability.param];
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (abilityStorage[ability.param]) onChangeAbility(ability.param, abilityStorage[ability.param]);
@@ -55,8 +60,12 @@ function Ability({ability, onChangeAbility, store}) {
         } else {
             onChangeAbility(ability.param, 0);
             isEmptyParams(newAbilities) ? removeAbilityStorage() : setAbilityStorage({...newAbilities});
-
         }
+    };
+
+    const reset = () => {
+        onChangeAbility(ability.param, 0);
+        removeAbilityStorage();
     };
 
     return (

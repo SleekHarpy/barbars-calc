@@ -2,20 +2,18 @@ import styles from './castle.module.scss';
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { initialStatuses } from "../../../mock/appMocks";
+import React from "react";
 
-
-const initialState = {
-    strength: false,
-    health: false,
-    shield: false,
-    energy: false,
-    regeneration: false,
-};
 
 function Castle({store, castle}) {
-    const [castleStorage, setCastleStorage] = useLocalStorage(`castles`);
+    const [castleStorage, setCastleStorage, removeCastleStorage] = useLocalStorage(`castles`);
     const [isActive, setActive] = useState(false);
     const sumCharms = store.sumCharms;
+
+    useEffect(() => {
+        reset();
+    }, [store.isReset]);
 
     useEffect(() => {
         if (castleStorage) {
@@ -32,11 +30,17 @@ function Castle({store, castle}) {
         const bonus = evt.target.dataset.bonus;
         const checked = evt.target.checked;
         const getStorage = JSON.parse(localStorage.getItem(`castles`));
-        const newStorage = getStorage ? {...getStorage} : {...initialState};
+        const newStorage = getStorage ? {...getStorage} : {...initialStatuses};
 
         setActive(checked);
         store.updateCastle(bonus, checked);
         setCastleStorage({...newStorage, [bonus]: checked});
+    };
+
+    const reset = () => {
+        setActive(false);
+        store.updateCastle(castle.bonus, false);
+        removeCastleStorage();
     };
 
     return (

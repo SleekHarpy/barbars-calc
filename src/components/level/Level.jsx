@@ -4,9 +4,15 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import { observer } from "mobx-react-lite";
 import { getInputValue } from "../../utils/common";
 
+
 function Level({store}) {
     const [levelStorage, setLevelStorage, removeLevelStorage] = useLocalStorage(`level`, 1);
     const level = store.level;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (levelStorage) store.updateLevel(levelStorage);
@@ -17,6 +23,11 @@ function Level({store}) {
 
         store.updateLevel(level);
         level > 0 ? setLevelStorage(level) : removeLevelStorage();
+    };
+
+    const reset = () => {
+        store.updateLevel(1);
+        removeLevelStorage();
     };
 
     return (

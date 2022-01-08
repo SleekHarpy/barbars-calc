@@ -1,13 +1,6 @@
-import {action, makeObservable, observable} from "mobx";
+import { action, makeObservable, observable } from "mobx";
+import { initialState } from "../mock/appMocks";
 
-
-const initialState = {
-    strength: 0,
-    health: 0,
-    shield: 0,
-    energy: 0,
-    regeneration: 0,
-};
 
 const START_LEVEL = 1
 const START_ALTAR = 0;
@@ -70,6 +63,7 @@ class AppStore{
         weapon: {...initialState},
         shoes: {...initialState},
     };
+    isReset = false;
 
     constructor() {
         makeObservable(this, {
@@ -90,6 +84,7 @@ class AppStore{
             things: observable,
             thingCharms: observable,
             thingRunes: observable,
+            isReset: observable,
             updateLevel: action,
             updateCups: action,
             updateBonuses: action,
@@ -103,6 +98,7 @@ class AppStore{
             updateCombatSkill: action,
             updatePremium: action,
             updateThings: action,
+            updateIsReset: action,
         });
     };
 
@@ -196,6 +192,10 @@ class AppStore{
             default:
                 throw new Error();
         }
+    };
+
+    updateIsReset() {
+        this.isReset = !this.isReset;
     };
 }
 

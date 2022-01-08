@@ -8,6 +8,11 @@ import { observer } from "mobx-react-lite";
 function Quenching({store}) {
     const [quenchingStorage, setQuenchingStorage, removeQuenchingStorage] = useLocalStorage(`quenching`);
     const quenching = store.quenching;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (quenchingStorage) store.quenchingUpdate(quenchingStorage);
@@ -19,6 +24,11 @@ function Quenching({store}) {
         store.quenchingUpdate(value);
         value > 0 ? setQuenchingStorage(value) : removeQuenchingStorage();
     };
+
+    const reset = () => {
+        store.quenchingUpdate(0);
+        removeQuenchingStorage();
+    }
 
     return (
         <section className={styles.quenching}>

@@ -3,11 +3,17 @@ import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { getInputValue, isEmptyParams } from "../../utils/common";
 import { useEffect } from "react";
+import { initialState } from "../../mock/appMocks";
 
 
 function Mastery({store}) {
     const [masteryStorage, setMasteryStorage, removeMasteryStorage] = useLocalStorage(`mastery`);
     const mastery = store.mastery;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (masteryStorage) store.updateMastery({...masteryStorage})
@@ -20,6 +26,11 @@ function Mastery({store}) {
 
         store.updateMastery({...newMastery});
         isEmptyParams(newMastery) ? removeMasteryStorage() : setMasteryStorage({...newMastery});
+    };
+
+    const reset = () => {
+        store.updateMastery({...initialState, master: 0});
+        removeMasteryStorage();
     };
 
     return (

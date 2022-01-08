@@ -3,11 +3,17 @@ import { observer } from "mobx-react-lite";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { getInputValue, isEmptyParams } from "../../utils/common";
 import { useEffect } from "react";
+import { initialState } from "../../mock/appMocks";
 
 
 function TitleBonus({store}) {
     const [titleBonusStorage, setTitleBonusStorage, removeTitleBonusStorage] = useLocalStorage(`titleBonusStorage`);
     const titleBonus = store.titleBonuses;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (titleBonusStorage) store.updateBonuses({...titleBonusStorage});
@@ -20,6 +26,11 @@ function TitleBonus({store}) {
 
         store.updateBonuses({...newTitleBonuses});
         !isEmptyParams(newTitleBonuses) ? setTitleBonusStorage({...newTitleBonuses}) : removeTitleBonusStorage();
+    };
+
+    const reset = () => {
+        store.updateBonuses({...initialState});
+        removeTitleBonusStorage();
     };
 
     return (

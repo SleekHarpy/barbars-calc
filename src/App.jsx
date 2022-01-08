@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './App.scss';
 import HeroCharacteristics from "./components/heroCharacteristics/HeroCharacteristics";
 import Container from "./components/container/Container";
@@ -14,9 +14,11 @@ import Cups from "./components/cups/Cups";
 import CombatSkill from "./components/combatSkill/CombatSkill";
 import Premium from "./components/premium/Premium";
 import Level from "./components/level/Level";
+import Reset from "./components/reset/Reset";
 
 function App() {
     const store = appStore;
+    const resetRef = useRef(null);
 
     return (
         <Container>
@@ -32,6 +34,7 @@ function App() {
             <CombatSkill store={store} />
             <Premium store={store} />
             <Things store={store} />
+            <Reset store={store} onReset={resetRef} />
         </Container>
     );
 }

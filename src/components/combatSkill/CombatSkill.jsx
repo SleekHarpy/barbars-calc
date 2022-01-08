@@ -8,6 +8,11 @@ import { useEffect } from "react";
 function CombatSkill({store}) {
     const [combatSkillStorage, setCombatSkillStorage, removeCombatSkillStorage] = useLocalStorage(`combatSkill`);
     const combatSkill = store.combatSkill;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (combatSkillStorage) store.updateCombatSkill(combatSkillStorage);
@@ -18,6 +23,11 @@ function CombatSkill({store}) {
 
         store.updateCombatSkill(value);
         value > 0 ? setCombatSkillStorage(value) : removeCombatSkillStorage();
+    };
+
+    const reset = () => {
+        store.updateCombatSkill(0);
+        removeCombatSkillStorage();
     };
 
     return (

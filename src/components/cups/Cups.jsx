@@ -8,6 +8,11 @@ import { observer } from "mobx-react-lite";
 function Cups({store}) {
     const [cupsStorage, setCupStorage, removeCupStorage] = useLocalStorage(`cups`);
     const cups = store.cups;
+    const resetStatus = store.isReset;
+
+    useEffect(() => {
+        if (resetStatus) reset();
+    }, [resetStatus]);
 
     useEffect(() => {
         if (cupsStorage) store.updateCups(cupsStorage);
@@ -18,6 +23,11 @@ function Cups({store}) {
 
         store.updateCups(value);
         value > 0 ? setCupStorage(value) : removeCupStorage();
+    };
+
+    const reset = () => {
+        store.updateCups(0);
+        removeCupStorage();
     };
 
     return (

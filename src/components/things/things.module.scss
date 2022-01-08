@@ -2,6 +2,8 @@
 @import "src/assets/styles/mixins";
 
 .things {
+  @include divider;
+
   padding: 10px 24px;
 
   min-height: 300px;

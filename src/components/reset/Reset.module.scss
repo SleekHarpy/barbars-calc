@@ -1,0 +1,37 @@
+@import "src/assets/styles/variables";
+
+.resetWrap {
+  padding: 10px 24px;
+
+  display: grid;
+  justify-content: center;
+}
+
+.btn {
+  position: relative;
+  padding-left: 17px;
+
+  color: $color-secondary;
+
+  background: none;
+  border: 0;
+
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+
+    display: block;
+    width: 14px;
+    height: 14px;
+
+    background-image: url("../../assets/images/icon-reset.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    content: "";
+  }
+}

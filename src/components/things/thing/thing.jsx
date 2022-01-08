@@ -5,6 +5,7 @@ import Stones from "../stones/stones";
 import Runes from "../runes/runes";
 import { getInputValue, isEmptyObj, isEmptyParams } from "../../../utils/common";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { observer } from "mobx-react-lite";
 
 
 const magicianValues = [75, 100, 150, 200, 250, 350];
@@ -99,6 +100,8 @@ function Thing({store, things, thingData}) {
         sorcerer: 0,
     });
 
+    const resetStatus = store.isReset;
+
     // Заполнение из localStorage
     useEffect(() => {
         if (thingStorage && Object.keys(selectedThing).length === 0) {
@@ -138,6 +141,14 @@ function Thing({store, things, thingData}) {
         }
 
     }, []);
+
+    useEffect(() => {
+        if (resetStatus) {
+            setIsReset(true);
+            setTimeout(reset, 10); // для сброса рун
+            setShowContent(false);
+        }
+    }, [resetStatus]);
 
     const updateSelectedThing = (thing) => {
         const params = {};
@@ -364,4 +375,4 @@ function Thing({store, things, thingData}) {
     );
 }
 
-export default Thing;
+export default observer(Thing);
