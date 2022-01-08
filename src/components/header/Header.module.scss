@@ -1,0 +1,33 @@
+@import "src/assets/styles/variables";
+
+
+.header {
+  padding: 12px 24px;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navLink {
+  margin-right: 10px;
+
+  color: $color-main;
+  text-decoration: none;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.active {
+  text-decoration: underline;
+  pointer-events: none;
+}
+
+.logoLink {
+  font-size: 0;
+}
