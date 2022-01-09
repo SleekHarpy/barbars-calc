@@ -4,6 +4,8 @@ import ringGoliath from '../../assets/images/things/rings/ring-goliath.png';
 import ringGoliath2 from '../../assets/images/things/rings/ring-goliath2.png';
 import ringAtlant from '../../assets/images/things/rings/ring-atlant.png';
 import ringAtlant2 from '../../assets/images/things/rings/ring-atlant2.png';
+import ringNemesis from '../../assets/images/things/rings/ring-nemesis.png';
+import ringNemesis2 from '../../assets/images/things/rings/ring-nemesis2.png';
 
 
 const ring = {
@@ -56,6 +58,21 @@ const rings = [
             { param: `health`, value: 18, },
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 102, },
+            { param: `shield`, value: 0, },
+        ]
+    },
+    {
+        id: 3,
+        name: `Кольцо Немезиды`,
+        level: 25,
+        icon: ringNemesis,
+        iconSorcerer: ringNemesis2,
+        sorcerer: [`shield`,],
+        params: [
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 20, },
+            { param: `energy`, value: 48, },
+            { param: `regeneration`, value: 105, },
             { param: `shield`, value: 0, },
         ]
     },
