@@ -1,5 +1,7 @@
-import shouldersBerserk from "../../assets/images/things/berserk/shoulders-berserk.png";
-import shouldersBerserk2 from "../../assets/images/things/berserk/shoulders-berserk2.png";
+import shouldersBerserk from '../../assets/images/things/shoulders/shoulders-berserk.png';
+import shouldersBerserk2 from '../../assets/images/things/shoulders/shoulders-berserk2.png';
+import shouldersGoliath from '../../assets/images/things/shoulders/shoulders-goliath.png';
+import shouldersGoliath2 from '../../assets/images/things/shoulders/shoulders-goliath2.png';
 
 
 const shoulder = {
@@ -23,6 +25,21 @@ const shoulders = [
             { param: `energy`, value: 0, },
             { param: `regeneration`, value: 24, },
             { param: `shield`, value: 18, },
+        ],
+    },
+    {
+        id: 1,
+        name: `Наплечник Голиафа`,
+        level: 25,
+        icon: shouldersGoliath,
+        iconSorcerer: shouldersGoliath2,
+        sorcerer: [`strength`, `regeneration`,],
+        params: [
+            { param: `strength`, value: 24, },
+            { param: `health`, value: 54, },
+            { param: `energy`, value: 0, },
+            { param: `regeneration`, value: 12, },
+            { param: `shield`, value: 30, },
         ],
     },
 ];

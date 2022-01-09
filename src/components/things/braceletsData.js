@@ -1,5 +1,7 @@
-import braceletsBerserk from "../../assets/images/things/berserk/bracelets-berserk.png";
-import braceletsBerserk2 from "../../assets/images/things/berserk/bracelets-berserk2.png";
+import braceletsBerserk from '../../assets/images/things/bracelets/bracelets-berserk.png';
+import braceletsBerserk2 from '../../assets/images/things/bracelets/bracelets-berserk2.png';
+import braceletsGoliath from '../../assets/images/things/bracelets/bracelets-goliath.png';
+import braceletsGoliath2 from '../../assets/images/things/bracelets/bracelets-goliath2.png';
 
 
 const braceletsOne = {
@@ -23,6 +25,21 @@ const bracelets = [
             { param: `energy`, value: 30, },
             { param: `regeneration`, value: 54, },
             { param: `shield`, value: 18, },
+        ],
+    },
+    {
+        id: 1,
+        name: `Браслет Голиафа`,
+        level: 25,
+        icon: braceletsGoliath,
+        iconSorcerer: braceletsGoliath2,
+        sorcerer: [`energy`, `regeneration`,],
+        params: [
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 30, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 36, },
+            { param: `shield`, value: 30, },
         ],
     },
 ];

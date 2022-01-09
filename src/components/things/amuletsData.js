@@ -1,5 +1,7 @@
-import amuletBerserk from "../../assets/images/things/berserk/amulet-berserk.png";
-import amuletBerserk2 from "../../assets/images/things/berserk/amulet-berserk2.png";
+import amuletBerserk from '../../assets/images/things/amulets/amulet-berserk.png';
+import amuletBerserk2 from '../../assets/images/things/amulets/amulet-berserk2.png';
+import amuletGoliath from '../../assets/images/things/amulets/amulet-goliath.png';
+import amuletGoliath2 from '../../assets/images/things/amulets/amulet-goliath2.png';
 
 
 const amulet = {
@@ -23,6 +25,21 @@ const amulets = [
             { param: `energy`, value: 96, },
             { param: `regeneration`, value: 18, },
             { param: `shield`, value: 0, },
+        ],
+    },
+    {
+        id: 1,
+        name: `Амулет Голиафа`,
+        level: 25,
+        icon: amuletGoliath,
+        iconSorcerer: amuletGoliath2,
+        sorcerer: [ `strength`, `energy`,],
+        params: [
+            { param: `strength`, value: 24, },
+            { param: `health`, value: 45, },
+            { param: `energy`, value: 30, },
+            { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 45, },
         ],
     },
 ];

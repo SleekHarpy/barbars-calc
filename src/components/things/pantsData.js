@@ -1,5 +1,7 @@
-import pantsBerserk from "../../assets/images/things/berserk/pants-berserk.png";
-import pantsBerserk2 from "../../assets/images/things/berserk/pants-berserk2.png";
+import pantsBerserk from '../../assets/images/things/pants/pants-berserk.png';
+import pantsBerserk2 from '../../assets/images/things/pants/pants-berserk2.png';
+import pantsGoliath from '../../assets/images/things/pants/pants-goliath.png';
+import pantsGoliath2 from '../../assets/images/things/pants/pants-goliath2.png';
 
 
 const pantsOne = {
@@ -23,6 +25,21 @@ const pants = [
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 18, },
             { param: `shield`, value: 48, },
+        ],
+    },
+    {
+        id: 1,
+        name: `Поножи Голиафа`,
+        level: 25,
+        icon: pantsGoliath,
+        iconSorcerer: pantsGoliath2,
+        sorcerer: [`strength`, `shield`,],
+        params: [
+            { param: `strength`, value: 24, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 18, },
+            { param: `shield`, value: 54, },
         ],
     },
 ];

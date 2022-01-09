@@ -1,5 +1,7 @@
-import helmetBerserk from "../../assets/images/things/berserk/helmet-berserk.png";
-import helmetBerserk2 from "../../assets/images/things/berserk/helmet-berserk2.png";
+import helmetBerserk from '../../assets/images/things/helmets/helmet-berserk.png';
+import helmetBerserk2 from '../../assets/images/things/helmets/helmet-berserk2.png';
+import helmetGoliath from '../../assets/images/things/helmets/helmet-goliath.png';
+import helmetGoliath2 from '../../assets/images/things/helmets/helmet-goliath2.png';
 
 
 const helmet = {
@@ -23,6 +25,21 @@ const helmets = [
             { param: `energy`, value: 0, },
             { param: `regeneration`, value: 24, },
             { param: `shield`, value: 0, },
+        ],
+    },
+    {
+        id: 1,
+        name: `Шлем Голиафа`,
+        level: 25,
+        icon: helmetGoliath,
+        iconSorcerer: helmetGoliath2,
+        sorcerer: [`strength`, `regeneration`,],
+        params: [
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 102, },
+            { param: `energy`, value: 0, },
+            { param: `regeneration`, value: 12, },
+            { param: `shield`, value: 30, },
         ],
     },
 ];
