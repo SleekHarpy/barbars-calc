@@ -4,6 +4,8 @@ import weaponGoliath from '../../assets/images/things/weapons/weapon-goliath.png
 import weaponGoliath2 from '../../assets/images/things/weapons/weapon-goliath2.png';
 import weaponAtlant from '../../assets/images/things/weapons/weapon-atlant.png';
 import weaponAtlant2 from '../../assets/images/things/weapons/weapon-atlant2.png';
+import weaponDragon from '../../assets/images/things/weapons/weapon-dragon.png';
+import weaponDragon2 from '../../assets/images/things/weapons/weapon-dragon2.png';
 
 
 const weapon = {
@@ -57,6 +59,21 @@ const weapons = [
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 48, },
             { param: `shield`, value: 0, },
+        ],
+    },
+    {
+        id: 3,
+        name: `Коготь Дракона`,
+        level: 25,
+        icon: weaponDragon,
+        iconSorcerer: weaponDragon2,
+        sorcerer: [`regeneration`,],
+        params: [
+            { param: `strength`, value: 105, },
+            { param: `health`, value: 20, },
+            { param: `energy`, value: 20, },
+            { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 30, },
         ],
     },
 ];
