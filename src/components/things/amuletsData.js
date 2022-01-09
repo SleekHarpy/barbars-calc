@@ -2,6 +2,8 @@ import amuletBerserk from '../../assets/images/things/amulets/amulet-berserk.png
 import amuletBerserk2 from '../../assets/images/things/amulets/amulet-berserk2.png';
 import amuletGoliath from '../../assets/images/things/amulets/amulet-goliath.png';
 import amuletGoliath2 from '../../assets/images/things/amulets/amulet-goliath2.png';
+import amuletAtlant from '../../assets/images/things/amulets/amulet-atlant.png';
+import amuletAtlant2 from '../../assets/images/things/amulets/amulet-atlant2.png';
 
 
 const amulet = {
@@ -40,6 +42,21 @@ const amulets = [
             { param: `energy`, value: 30, },
             { param: `regeneration`, value: 0, },
             { param: `shield`, value: 45, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Амулет Атланта`,
+        level: 25,
+        icon: amuletAtlant,
+        iconSorcerer: amuletAtlant2,
+        sorcerer: [ `strength`, `health`,],
+        params: [
+            { param: `strength`, value: 18, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 96, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 0, },
         ],
     },
 ];

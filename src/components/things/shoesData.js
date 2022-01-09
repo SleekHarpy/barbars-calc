@@ -2,6 +2,8 @@ import shoesBerserk from '../../assets/images/things/shoes/shoes-berserk.png';
 import shoesBerserk2 from '../../assets/images/things/shoes/shoes-berserk2.png';
 import shoesGoliath from '../../assets/images/things/shoes/shoes-goliath.png';
 import shoesGoliath2 from '../../assets/images/things/shoes/shoes-goliath2.png';
+import shoesAtlant from '../../assets/images/things/shoes/shoes-atlant.png';
+import shoesAtlant2 from '../../assets/images/things/shoes/shoes-atlant2.png';
 
 
 const shoesOne = {
@@ -40,6 +42,21 @@ const shoes = [
             { param: `energy`, value: 17, },
             { param: `regeneration`, value: 0, },
             { param: `shield`, value: 48, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Сапоги Атланта`,
+        level: 25,
+        icon: shoesAtlant,
+        iconSorcerer: shoesAtlant2,
+        sorcerer: [`health`, `shield`,],
+        params: [
+            { param: `strength`, value: 18, },
+            { param: `health`, value: 24, },
+            { param: `energy`, value: 54, },
+            { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 24, },
         ],
     },
 ];

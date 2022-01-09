@@ -2,6 +2,8 @@ import helmetBerserk from '../../assets/images/things/helmets/helmet-berserk.png
 import helmetBerserk2 from '../../assets/images/things/helmets/helmet-berserk2.png';
 import helmetGoliath from '../../assets/images/things/helmets/helmet-goliath.png';
 import helmetGoliath2 from '../../assets/images/things/helmets/helmet-goliath2.png';
+import helmetAtlant from '../../assets/images/things/helmets/helmet-atlant.png';
+import helmetAtlant2 from '../../assets/images/things/helmets/helmet-atlant2.png';
 
 
 const helmet = {
@@ -40,6 +42,21 @@ const helmets = [
             { param: `energy`, value: 0, },
             { param: `regeneration`, value: 12, },
             { param: `shield`, value: 30, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Шлем Атланта`,
+        level: 25,
+        icon: helmetAtlant,
+        iconSorcerer: helmetAtlant2,
+        sorcerer: [`strength`, `shield`,],
+        params: [
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 90, },
+            { param: `energy`, value: 0, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 18, },
         ],
     },
 ];

@@ -2,6 +2,8 @@ import weaponBerserk from '../../assets/images/things/weapons/weapon-berserk.png
 import weaponBerserk2 from '../../assets/images/things/weapons/weapon-berserk2.png';
 import weaponGoliath from '../../assets/images/things/weapons/weapon-goliath.png';
 import weaponGoliath2 from '../../assets/images/things/weapons/weapon-goliath2.png';
+import weaponAtlant from '../../assets/images/things/weapons/weapon-atlant.png';
+import weaponAtlant2 from '../../assets/images/things/weapons/weapon-atlant2.png';
 
 
 const weapon = {
@@ -39,6 +41,21 @@ const weapons = [
             { param: `health`, value: 30, },
             { param: `energy`, value: 18, },
             { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 0, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Посох Атланта`,
+        level: 25,
+        icon: weaponAtlant,
+        iconSorcerer: weaponAtlant2,
+        sorcerer: [`strength`, `shield`,],
+        params: [
+            { param: `strength`, value: 72, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 48, },
             { param: `shield`, value: 0, },
         ],
     },

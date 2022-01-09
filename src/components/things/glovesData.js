@@ -2,6 +2,8 @@ import glovesBerserk from '../../assets/images/things/gloves/gloves-berserk.png'
 import glovesBerserk2 from '../../assets/images/things/gloves/gloves-berserk2.png';
 import glovesGoliath from '../../assets/images/things/gloves/gloves-goliath.png';
 import glovesGoliath2 from '../../assets/images/things/gloves/gloves-goliath2.png';
+import glovesAtlant from '../../assets/images/things/gloves/gloves-atlant.png';
+import glovesAtlant2 from '../../assets/images/things/gloves/gloves-atlant2.png';
 
 
 const glovesOne = {
@@ -40,6 +42,21 @@ const gloves = [
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 18, },
             { param: `shield`, value: 30, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Перчатки Атланта`,
+        level: 25,
+        icon: glovesAtlant,
+        iconSorcerer: glovesAtlant2,
+        sorcerer: [`strength`, `shield`,],
+        params: [
+            { param: `strength`, value: 36, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 30, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 24, },
         ],
     },
 ];

@@ -2,6 +2,8 @@ import beltBerserk from '../../assets/images/things/belts/belt-berserk.png';
 import beltBerserk2 from '../../assets/images/things/belts/belt-berserk2.png';
 import beltGoliath from '../../assets/images/things/belts/belt-goliath.png';
 import beltGoliath2 from '../../assets/images/things/belts/belt-goliath2.png';
+import beltAtlant from '../../assets/images/things/belts/belt-atlant.png';
+import beltAtlant2 from '../../assets/images/things/belts/belt-atlant2.png';
 
 
 const belt = {
@@ -40,6 +42,21 @@ const belts = [
             { param: `energy`, value: 18, },
             { param: `regeneration`, value: 18, },
             { param: `shield`, value: 30, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Пояс Атланта`,
+        level: 25,
+        icon: beltAtlant,
+        iconSorcerer: beltAtlant2,
+        sorcerer: [`health`, `shield`,],
+        params: [
+            { param: `strength`, value: 18, },
+            { param: `health`, value: 24, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 24, },
         ],
     },
 ];

@@ -2,6 +2,8 @@ import ringBerserk from '../../assets/images/things/rings/ring-berserk.png';
 import ringBerserk2 from '../../assets/images/things/rings/ring-berserk2.png';
 import ringGoliath from '../../assets/images/things/rings/ring-goliath.png';
 import ringGoliath2 from '../../assets/images/things/rings/ring-goliath2.png';
+import ringAtlant from '../../assets/images/things/rings/ring-atlant.png';
+import ringAtlant2 from '../../assets/images/things/rings/ring-atlant2.png';
 
 
 const ring = {
@@ -39,6 +41,21 @@ const rings = [
             { param: `health`, value: 48, },
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 72, },
+            { param: `shield`, value: 0, },
+        ]
+    },
+    {
+        id: 2,
+        name: `Перстень Атланта`,
+        level: 25,
+        icon: ringAtlant,
+        iconSorcerer: ringAtlant2,
+        sorcerer: [`strength`, `health`,],
+        params: [
+            { param: `strength`, value: 0, },
+            { param: `health`, value: 18, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 102, },
             { param: `shield`, value: 0, },
         ]
     },

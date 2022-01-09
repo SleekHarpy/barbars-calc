@@ -2,6 +2,8 @@ import capeBerserk from '../../assets/images/things/capes/cape-berserk.png';
 import capeBerserk2 from '../../assets/images/things/capes/cape-berserk2.png';
 import capeGoliath from '../../assets/images/things/capes/cape-goliath.png';
 import capeGoliath2 from '../../assets/images/things/capes/cape-goliath2.png';
+import capeAtlant from '../../assets/images/things/capes/cape-atlant.png';
+import capeAtlant2 from '../../assets/images/things/capes/cape-atlant2.png';
 
 
 const cape = {
@@ -40,6 +42,21 @@ const capes = [
             { param: `energy`, value: 18, },
             { param: `regeneration`, value: 18, },
             { param: `shield`, value: 30, },
+        ],
+    },
+    {
+        id: 2,
+        name: `Накидка Атланта`,
+        level: 25,
+        icon: capeAtlant,
+        iconSorcerer: capeAtlant2,
+        sorcerer: [`health`, `shield`,],
+        params: [
+            { param: `strength`, value: 18, },
+            { param: `health`, value: 24, },
+            { param: `energy`, value: 24, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 24, },
         ],
     },
 ];
