@@ -6,6 +6,8 @@ import weaponAtlant from '../../assets/images/things/weapons/weapon-atlant.png';
 import weaponAtlant2 from '../../assets/images/things/weapons/weapon-atlant2.png';
 import weaponDragon from '../../assets/images/things/weapons/weapon-dragon.png';
 import weaponDragon2 from '../../assets/images/things/weapons/weapon-dragon2.png';
+import weaponGiant from '../../assets/images/things/weapons/weapon-giant.png';
+import weaponGiant2 from '../../assets/images/things/weapons/weapon-giant2.png';
 
 
 const weapon = {
@@ -74,6 +76,21 @@ const weapons = [
             { param: `energy`, value: 20, },
             { param: `regeneration`, value: 0, },
             { param: `shield`, value: 30, },
+        ],
+    },
+    {
+        id: 4,
+        name: `Дубина Великана`,
+        level: 25,
+        icon: weaponGiant,
+        iconSorcerer: weaponGiant2,
+        sorcerer: [`strength`,],
+        params: [
+            { param: `strength`, value: 102, },
+            { param: `health`, value: 28, },
+            { param: `energy`, value: 30, },
+            { param: `regeneration`, value: 0, },
+            { param: `shield`, value: 0, },
         ],
     },
 ];
