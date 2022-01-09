@@ -280,9 +280,13 @@ function Thing({store, things, thingData}) {
 
     const updateSorcerer = (value) => {
         if (value > 0 && thingState.sorcerer === 0) {
+            const newPercents = {...thingState.paramPercents};
+
             selectedThing.params.forEach((item) => {
-                item.value === 0 && updateParamPercents({...thingState.paramPercents, [item.param]: 250});
-            })
+                if (item.value === 0) newPercents[item.param] = 250;
+            });
+
+            updateParamPercents({...newPercents});
         }
 
         dispatchThingState({type: `sorcerer`, payload: value});
