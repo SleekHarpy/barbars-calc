@@ -4,6 +4,8 @@ import amuletGoliath from '../../assets/images/things/amulets/amulet-goliath.png
 import amuletGoliath2 from '../../assets/images/things/amulets/amulet-goliath2.png';
 import amuletAtlant from '../../assets/images/things/amulets/amulet-atlant.png';
 import amuletAtlant2 from '../../assets/images/things/amulets/amulet-atlant2.png';
+import amuletZodiac from '../../assets/images/things/amulets/amulet-zodiac.png';
+import amuletZodiac2 from '../../assets/images/things/amulets/amulet-zodiac2.png';
 
 
 const amulet = {
@@ -20,7 +22,7 @@ const amulets = [
         level: 25,
         icon: amuletBerserk,
         iconSorcerer: amuletBerserk2,
-        sorcerer: [ `health`, `regeneration`,],
+        sorcerer: [`health`, `regeneration`,],
         params: [
             { param: `strength`, value: 30, },
             { param: `health`, value: 0, },
@@ -35,7 +37,7 @@ const amulets = [
         level: 25,
         icon: amuletGoliath,
         iconSorcerer: amuletGoliath2,
-        sorcerer: [ `strength`, `energy`,],
+        sorcerer: [`strength`, `energy`,],
         params: [
             { param: `strength`, value: 24, },
             { param: `health`, value: 45, },
@@ -50,11 +52,26 @@ const amulets = [
         level: 25,
         icon: amuletAtlant,
         iconSorcerer: amuletAtlant2,
-        sorcerer: [ `strength`, `health`,],
+        sorcerer: [`strength`, `health`,],
         params: [
             { param: `strength`, value: 18, },
             { param: `health`, value: 0, },
             { param: `energy`, value: 96, },
+            { param: `regeneration`, value: 30, },
+            { param: `shield`, value: 0, },
+        ],
+    },
+    {
+        id: 3,
+        name: `Амулет Зодиака`,
+        level: 25,
+        icon: amuletZodiac,
+        iconSorcerer: amuletZodiac2,
+        sorcerer: [`shield`,],
+        params: [
+            { param: `strength`, value: 30, },
+            { param: `health`, value: 0, },
+            { param: `energy`, value: 105, },
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 0, },
         ],
