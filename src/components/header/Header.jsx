@@ -1,6 +1,7 @@
 import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { AppRoute } from '../../const/const';
 
 
 function Header() {
@@ -14,14 +15,21 @@ function Header() {
             </NavLink>
             <nav>
                 <NavLink
-                    to="/"
+                    to={AppRoute.ROOT}
                     className={props => `${props.isActive ? styles.active : ''} ${styles.navLink}`
                     }
                 >
                     Главная
                 </NavLink>
                 <NavLink
-                    to="/help"
+                    to={AppRoute.CHAT}
+                    className={props => `${props.isActive ? styles.active : ''} ${styles.navLink}`
+                    }
+                >
+                    Чат
+                </NavLink>
+                <NavLink
+                    to={AppRoute.HELP}
                     className={props => `${props.isActive ? styles.active : ''} ${styles.navLink}`}
                 >
                     Помощь
