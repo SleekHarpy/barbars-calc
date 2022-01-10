@@ -4,7 +4,21 @@ import pantsGoliath from '../../assets/images/things/pants/pants-goliath.png';
 import pantsGoliath2 from '../../assets/images/things/pants/pants-goliath2.png';
 import pantsAtlant from '../../assets/images/things/pants/pants-atlant.png';
 import pantsAtlant2 from '../../assets/images/things/pants/pants-atlant2.png';
+import pantsVeteran from '../../assets/images/things/pants/pants-veteran.png';
+import pantsVeteran2 from '../../assets/images/things/pants/pants-veteran2.png';
 
+
+const pantsVeteranInit = {
+    level: 22,
+    sorcerer: [`energy`, `regeneration`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 0, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 48, },
+    ],
+}
 
 const pantsOne = {
     title: `Штаны`,
@@ -58,6 +72,13 @@ const pants = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 48, },
         ],
+    },
+    {
+        ...pantsVeteranInit,
+        id: 3,
+        name: `Штаны Ветерана`,
+        icon: pantsVeteran,
+        iconSorcerer: pantsVeteran2,
     },
 ];
 

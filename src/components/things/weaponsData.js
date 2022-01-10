@@ -4,11 +4,25 @@ import weaponGoliath from '../../assets/images/things/weapons/weapon-goliath.png
 import weaponGoliath2 from '../../assets/images/things/weapons/weapon-goliath2.png';
 import weaponAtlant from '../../assets/images/things/weapons/weapon-atlant.png';
 import weaponAtlant2 from '../../assets/images/things/weapons/weapon-atlant2.png';
+import weaponVeteran from '../../assets/images/things/weapons/weapon-veteran.png';
+import weaponVeteran2 from '../../assets/images/things/weapons/weapon-veteran2.png';
 import weaponDragon from '../../assets/images/things/weapons/weapon-dragon.png';
 import weaponDragon2 from '../../assets/images/things/weapons/weapon-dragon2.png';
 import weaponGiant from '../../assets/images/things/weapons/weapon-giant.png';
 import weaponGiant2 from '../../assets/images/things/weapons/weapon-giant2.png';
 
+
+const weaponVeteranInit = {
+    level: 25,
+    sorcerer: [`health`, `shield`,],
+    params: [
+        { param: `strength`, value: 96, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 0, },
+        { param: `shield`, value: 0, },
+    ],
+}
 
 const weapon = {
     title: `Оружие`,
@@ -64,7 +78,14 @@ const weapons = [
         ],
     },
     {
+        ...weaponVeteranInit,
         id: 3,
+        name: `Молот Ветерана`,
+        icon: weaponVeteran,
+        iconSorcerer: weaponVeteran2,
+    },
+    {
+        id: 4,
         name: `Коготь Дракона`,
         level: 25,
         icon: weaponDragon,
@@ -79,7 +100,7 @@ const weapons = [
         ],
     },
     {
-        id: 4,
+        id: 5,
         name: `Дубина Великана`,
         level: 25,
         icon: weaponGiant,

@@ -4,7 +4,21 @@ import shouldersGoliath from '../../assets/images/things/shoulders/shoulders-gol
 import shouldersGoliath2 from '../../assets/images/things/shoulders/shoulders-goliath2.png';
 import shouldersAtlant from '../../assets/images/things/shoulders/shoulders-atlant.png';
 import shouldersAtlant2 from '../../assets/images/things/shoulders/shoulders-atlant2.png';
+import shouldersVeteran from '../../assets/images/things/shoulders/shoulders-veteran.png';
+import shouldersVeteran2 from '../../assets/images/things/shoulders/shoulders-veteran2.png';
 
+
+const shouldersVeteranInit = {
+    level: 23,
+    sorcerer: [`strength`, `shield`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 48, },
+        { param: `energy`, value: 0, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 24, },
+    ],
+}
 
 const shoulder = {
     title: `Наплечники`,
@@ -58,6 +72,13 @@ const shoulders = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 24, },
         ],
+    },
+    {
+        ...shouldersVeteranInit,
+        id: 3,
+        name: `Наплечник Ветерана`,
+        icon: shouldersVeteran,
+        iconSorcerer: shouldersVeteran2,
     },
 ];
 

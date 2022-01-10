@@ -4,7 +4,21 @@ import shoesGoliath from '../../assets/images/things/shoes/shoes-goliath.png';
 import shoesGoliath2 from '../../assets/images/things/shoes/shoes-goliath2.png';
 import shoesAtlant from '../../assets/images/things/shoes/shoes-atlant.png';
 import shoesAtlant2 from '../../assets/images/things/shoes/shoes-atlant2.png';
+import shoesVeteran from '../../assets/images/things/shoes/shoes-veteran.png';
+import shoesVeteran2 from '../../assets/images/things/shoes/shoes-veteran2.png';
 
+
+const shoesVeteranInit = {
+    level: 25,
+    sorcerer: [`health`, `shield`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 48, },
+        { param: `regeneration`, value: 0, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const shoesOne = {
     title: `Обувь`,
@@ -58,6 +72,13 @@ const shoes = [
             { param: `regeneration`, value: 0, },
             { param: `shield`, value: 24, },
         ],
+    },
+    {
+        ...shoesVeteranInit,
+        id: 3,
+        name: `Сапоги Ветерана`,
+        icon: shoesVeteran,
+        iconSorcerer: shoesVeteran2,
     },
 ];
 

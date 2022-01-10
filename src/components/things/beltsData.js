@@ -4,7 +4,21 @@ import beltGoliath from '../../assets/images/things/belts/belt-goliath.png';
 import beltGoliath2 from '../../assets/images/things/belts/belt-goliath2.png';
 import beltAtlant from '../../assets/images/things/belts/belt-atlant.png';
 import beltAtlant2 from '../../assets/images/things/belts/belt-atlant2.png';
+import beltVeteran from '../../assets/images/things/belts/belt-veteran.png';
+import beltVeteran2 from '../../assets/images/things/belts/belt-veteran2.png';
 
+
+const beltVeteranInit = {
+    level: 21,
+    sorcerer: [`energy`, `regeneration`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const belt = {
     title: `Пояс`,
@@ -58,6 +72,13 @@ const belts = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 24, },
         ],
+    },
+    {
+        ...beltVeteranInit,
+        id: 3,
+        name: `Пояс Ветерана`,
+        icon: beltVeteran,
+        iconSorcerer: beltVeteran2,
     },
 ];
 

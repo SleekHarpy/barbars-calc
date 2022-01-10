@@ -4,7 +4,21 @@ import glovesGoliath from '../../assets/images/things/gloves/gloves-goliath.png'
 import glovesGoliath2 from '../../assets/images/things/gloves/gloves-goliath2.png';
 import glovesAtlant from '../../assets/images/things/gloves/gloves-atlant.png';
 import glovesAtlant2 from '../../assets/images/things/gloves/gloves-atlant2.png';
+import glovesVeteran from '../../assets/images/things/gloves/gloves-veteran.png';
+import glovesVeteran2 from '../../assets/images/things/gloves/gloves-veteran2.png';
 
+
+const glovesVeteranInit = {
+    level: 23,
+    sorcerer: [`regeneration`, `shield`,],
+    params: [
+        { param: `strength`, value: 48, },
+        { param: `health`, value: 0, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const glovesOne = {
     title: `Перчатки`,
@@ -58,6 +72,13 @@ const gloves = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 24, },
         ],
+    },
+    {
+        ...glovesVeteranInit,
+        id: 3,
+        name: `Наручи Ветерана`,
+        icon: glovesVeteran,
+        iconSorcerer: glovesVeteran2,
     },
 ];
 

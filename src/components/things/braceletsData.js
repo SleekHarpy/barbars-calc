@@ -1,10 +1,24 @@
-import braceletsBerserk from '../../assets/images/things/bracelets/bracelets-berserk.png';
-import braceletsBerserk2 from '../../assets/images/things/bracelets/bracelets-berserk2.png';
-import braceletsGoliath from '../../assets/images/things/bracelets/bracelets-goliath.png';
-import braceletsGoliath2 from '../../assets/images/things/bracelets/bracelets-goliath2.png';
-import braceletsAtlant from '../../assets/images/things/bracelets/bracelets-atlant.png';
-import braceletsAtlant2 from '../../assets/images/things/bracelets/bracelets-atlant2.png';
+import braceletBerserk from '../../assets/images/things/bracelets/bracelet-berserk.png';
+import braceletBerserk2 from '../../assets/images/things/bracelets/bracelet-berserk2.png';
+import braceletGoliath from '../../assets/images/things/bracelets/bracelet-goliath.png';
+import braceletGoliath2 from '../../assets/images/things/bracelets/bracelet-goliath2.png';
+import braceletAtlant from '../../assets/images/things/bracelets/bracelet-atlant.png';
+import braceletAtlant2 from '../../assets/images/things/bracelets/bracelet-atlant2.png';
+import braceletVeteran from '../../assets/images/things/bracelets/bracelet-veteran.png';
+import braceletVeteran2 from '../../assets/images/things/bracelets/bracelet-veteran2.png';
 
+
+const braceletVeteranInit = {
+    level: 23,
+    sorcerer: [`health`, `energy`,],
+    params: [
+        { param: `strength`, value: 0, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 48, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const braceletsOne = {
     title: `Браслет`,
@@ -18,8 +32,8 @@ const bracelets = [
         id: 0,
         name: `Браслет Берсерка`,
         level: 25,
-        icon: braceletsBerserk,
-        iconSorcerer: braceletsBerserk2,
+        icon: braceletBerserk,
+        iconSorcerer: braceletBerserk2,
         sorcerer: [`health`, `shield`,],
         params: [
             { param: `strength`, value: 0, },
@@ -33,8 +47,8 @@ const bracelets = [
         id: 1,
         name: `Браслет Голиафа`,
         level: 25,
-        icon: braceletsGoliath,
-        iconSorcerer: braceletsGoliath2,
+        icon: braceletGoliath,
+        iconSorcerer: braceletGoliath2,
         sorcerer: [`energy`, `regeneration`,],
         params: [
             { param: `strength`, value: 0, },
@@ -48,8 +62,8 @@ const bracelets = [
         id: 2,
         name: `Браслет Атланта`,
         level: 25,
-        icon: braceletsAtlant,
-        iconSorcerer: braceletsAtlant2,
+        icon: braceletAtlant,
+        iconSorcerer: braceletAtlant2,
         sorcerer: [`health`, `shield`,],
         params: [
             { param: `strength`, value: 0, },
@@ -58,6 +72,13 @@ const bracelets = [
             { param: `regeneration`, value: 54, },
             { param: `shield`, value: 18, },
         ],
+    },
+    {
+        ...braceletVeteranInit,
+        id: 3,
+        name: `Браслет Ветерана`,
+        icon: braceletVeteran,
+        iconSorcerer: braceletVeteran2,
     },
 ];
 

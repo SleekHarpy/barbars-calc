@@ -4,8 +4,23 @@ import amuletGoliath from '../../assets/images/things/amulets/amulet-goliath.png
 import amuletGoliath2 from '../../assets/images/things/amulets/amulet-goliath2.png';
 import amuletAtlant from '../../assets/images/things/amulets/amulet-atlant.png';
 import amuletAtlant2 from '../../assets/images/things/amulets/amulet-atlant2.png';
+import amuletVeteran from '../../assets/images/things/amulets/amulet-veteran.png';
+import amuletVeteran2 from '../../assets/images/things/amulets/amulet-veteran2.png';
 import amuletZodiac from '../../assets/images/things/amulets/amulet-zodiac.png';
 import amuletZodiac2 from '../../assets/images/things/amulets/amulet-zodiac2.png';
+
+
+const amuletVeteranInit = {
+    level: 24,
+    sorcerer: [`strength`, `health`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 0, },
+        { param: `energy`, value: 96, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 0, },
+    ],
+};
 
 
 const amulet = {
@@ -62,7 +77,14 @@ const amulets = [
         ],
     },
     {
+        ...amuletVeteranInit,
         id: 3,
+        name: `Амулет Ветерана`,
+        icon: amuletVeteran,
+        iconSorcerer: amuletVeteran2,
+    },
+    {
+        id: 4,
         name: `Амулет Зодиака`,
         level: 25,
         icon: amuletZodiac,

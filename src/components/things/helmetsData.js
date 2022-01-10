@@ -4,7 +4,21 @@ import helmetGoliath from '../../assets/images/things/helmets/helmet-goliath.png
 import helmetGoliath2 from '../../assets/images/things/helmets/helmet-goliath2.png';
 import helmetAtlant from '../../assets/images/things/helmets/helmet-atlant.png';
 import helmetAtlant2 from '../../assets/images/things/helmets/helmet-atlant2.png';
+import helmetVeteran from '../../assets/images/things/helmets/helmet-veteran.png';
+import helmetVeteran2 from '../../assets/images/things/helmets/helmet-veteran2.png';
 
+
+const helmetVeteranInit = {
+    level: 25,
+    sorcerer: [`strength`, `regeneration`,],
+    params: [
+        { param: `strength`, value: 0, },
+        { param: `health`, value: 96, },
+        { param: `energy`, value: 0, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const helmet = {
     title: `Шлем`,
@@ -58,6 +72,13 @@ const helmets = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 18, },
         ],
+    },
+    {
+        ...helmetVeteranInit,
+        id: 3,
+        name: `Шлем Ветерана`,
+        icon: helmetVeteran,
+        iconSorcerer: helmetVeteran2,
     },
 ];
 

@@ -4,7 +4,21 @@ import capeGoliath from '../../assets/images/things/capes/cape-goliath.png';
 import capeGoliath2 from '../../assets/images/things/capes/cape-goliath2.png';
 import capeAtlant from '../../assets/images/things/capes/cape-atlant.png';
 import capeAtlant2 from '../../assets/images/things/capes/cape-atlant2.png';
+import capeVeteran from '../../assets/images/things/capes/cape-veteran.png';
+import capeVeteran2 from '../../assets/images/things/capes/cape-veteran2.png';
 
+
+const capeVeteranInit = {
+    level: 21,
+    sorcerer: [`health`, `energy`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 24, },
+        { param: `shield`, value: 24, },
+    ],
+};
 
 const cape = {
     title: `Накидка`,
@@ -58,6 +72,14 @@ const capes = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 24, },
         ],
+    },
+    {
+        ...capeVeteranInit,
+        id: 3,
+        name: `Бурка Ветерана`,
+        level: 25,
+        icon: capeVeteran,
+        iconSorcerer: capeVeteran2,
     },
 ];
 

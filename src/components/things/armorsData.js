@@ -4,7 +4,21 @@ import armorGoliath from '../../assets/images/things/armors/armor-goliath.png';
 import armorGoliath2 from '../../assets/images/things/armors/armor-goliath2.png';
 import armorAtlant from '../../assets/images/things/armors/armor-atlant.png';
 import armorAtlant2 from '../../assets/images/things/armors/armor-atlant2.png';
+import armorVeteran from '../../assets/images/things/armors/armor-veteran.png';
+import armorVeteran2 from '../../assets/images/things/armors/armor-veteran2.png';
 
+
+const armorVeteranInit = {
+    level: 25,
+    sorcerer: [`strength`, `regeneration`,],
+    params: [
+        { param: `strength`, value: 24, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 0, },
+        { param: `regeneration`, value: 0, },
+        { param: `shield`, value: 96, },
+    ],
+};
 
 const armor = {
     title: `Броня`,
@@ -58,6 +72,14 @@ const armors = [
             { param: `regeneration`, value: 30, },
             { param: `shield`, value: 72, },
         ],
+    },
+    {
+        ...armorVeteranInit,
+        id: 3,
+        name: `Кираса Ветерана`,
+        level: 25,
+        icon: armorVeteran,
+        iconSorcerer: armorVeteran2,
     },
 ];
 

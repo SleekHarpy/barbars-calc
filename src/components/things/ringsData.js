@@ -4,9 +4,23 @@ import ringGoliath from '../../assets/images/things/rings/ring-goliath.png';
 import ringGoliath2 from '../../assets/images/things/rings/ring-goliath2.png';
 import ringAtlant from '../../assets/images/things/rings/ring-atlant.png';
 import ringAtlant2 from '../../assets/images/things/rings/ring-atlant2.png';
+import ringVeteran from '../../assets/images/things/rings/ring-veteran.png';
+import ringVeteran2 from '../../assets/images/things/rings/ring-veteran2.png';
 import ringNemesis from '../../assets/images/things/rings/ring-nemesis.png';
 import ringNemesis2 from '../../assets/images/things/rings/ring-nemesis2.png';
 
+
+const ringVeteranInit = {
+    level: 24,
+    sorcerer: [`strength`, `energy`,],
+    params: [
+        { param: `strength`, value: 0, },
+        { param: `health`, value: 24, },
+        { param: `energy`, value: 24, },
+        { param: `regeneration`, value: 96, },
+        { param: `shield`, value: 0, },
+    ],
+};
 
 const ring = {
     title: `Кольцо`,
@@ -29,7 +43,7 @@ const rings = [
             { param: `energy`, value: 30, },
             { param: `regeneration`, value: 96, },
             { param: `shield`, value: 0, },
-        ]
+        ],
     },
     {
         id: 1,
@@ -44,7 +58,7 @@ const rings = [
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 72, },
             { param: `shield`, value: 0, },
-        ]
+        ],
     },
     {
         id: 2,
@@ -59,10 +73,17 @@ const rings = [
             { param: `energy`, value: 24, },
             { param: `regeneration`, value: 102, },
             { param: `shield`, value: 0, },
-        ]
+        ],
     },
     {
+        ...ringVeteranInit,
         id: 3,
+        name: `Кольцо Ветерана`,
+        icon: ringVeteran,
+        iconSorcerer: ringVeteran2,
+    },
+    {
+        id: 4,
         name: `Кольцо Немезиды`,
         level: 25,
         icon: ringNemesis,
