@@ -145,7 +145,7 @@ function Thing({store, things, thingData}) {
     useEffect(() => {
         if (resetStatus) {
             setIsReset(true);
-            setTimeout(reset, 10); // для сброса рун
+            setTimeout(clearThing, 10); // для сброса рун
             setShowContent(false);
         }
     }, [resetStatus]);
@@ -181,12 +181,17 @@ function Thing({store, things, thingData}) {
         const value = evt.target.value;
 
         if (value !== `empty`) {
-            updateSelectedThing(things[value]);
-            setIsReset(false);
+            new Promise(resolve => {
+                setIsReset(true);
+                resolve()
+            })
+                .then(() => reset())
+                .then(() => updateSelectedThing(things[value]));
+
             setThingStorage({selectedThingId: Number(value)});
         } else {
             setIsReset(true);
-            setTimeout(reset, 10); // для сброса рун
+            setTimeout(clearThing, 10); // для сброса рун
             removeThingStorage();
         }
     };
@@ -301,13 +306,17 @@ function Thing({store, things, thingData}) {
     };
 
     const reset = () => {
-        setSelectedThing({});
-        updateMultipliedParams({...initialState});
         store.updateThings(thingData.thing, { char: 0 }, `charms`);
         setChar(null);
         dispatchThingState({type: `sorcerer`, payload: 0});
         dispatchThingState({type: `blacksmith`, payload: 0});
         dispatchThingState({type: `paramPercents`, payload: {...initialState}});
+    };
+
+    const clearThing = () => {
+        setSelectedThing({});
+        reset();
+        updateMultipliedParams({...initialState});
         removeThingStorage();
     };
 
@@ -358,7 +367,7 @@ function Thing({store, things, thingData}) {
                                 </div>
                             }
 
-                            <Runes store={store} thing={thingData} resetStatus={isReset} />
+                            <Runes store={store} thing={thingData} resetStatus={isReset} onReset={setIsReset} />
 
                             <div>
                                 <span className={styles.item}>Кузнец: </span>

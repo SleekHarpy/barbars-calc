@@ -12,7 +12,7 @@ const paramNames = {
     shield: `брони`,
 };
 
-function Runes({store, thing, resetStatus}) {
+function Runes({store, thing, resetStatus, onReset}) {
     const [thingStorage, , , updateThingStorage] = useLocalStorage(thing.thing);
     const [runes, setRunes] = useState({
         param: ``,
@@ -37,6 +37,7 @@ function Runes({store, thing, resetStatus}) {
         if (resetStatus) {
             setRunes({param: ``, value: 0})
             store.updateThings(thing.thing, { [runes.param]: 0 }, `runes`);
+            onReset(false);
         }
     }, [resetStatus]);
 
