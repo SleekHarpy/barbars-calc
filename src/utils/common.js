@@ -10,8 +10,13 @@ const isEmptyParams = (params) => {
     return Object.values(params).filter(item => item > 0).length === 0;
 }
 
+const formatNumber = (number) => {
+    return number.toLocaleString();
+};
+
 export {
     getInputValue,
     isEmptyObj,
     isEmptyParams,
+    formatNumber,
 };

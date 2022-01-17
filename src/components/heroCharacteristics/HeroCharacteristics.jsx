@@ -2,6 +2,7 @@ import styles from './HeroCharacteristics.module.scss';
 import {useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {autorun} from "mobx";
+import { formatNumber } from '../../utils/common';
 
 
 const LEVEL_BONUS = 10;
@@ -83,22 +84,22 @@ function HeroCharacteristics({store}) {
         <section className={styles.heroCharacteristics}>
             <ul className={styles.list}>
                 <li className={`${styles.item} ${styles.itemStrength}`}>
-                    сила: <span className={altar > 0 ? styles.value : null}>{params.strength}</span>
+                    сила: <span className={altar > 0 ? styles.value : null}>{formatNumber(params.strength)}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemHealth}`}>
-                    здоровье: <span className={altar > 0 ? styles.value : null}>{params.health}</span>
+                    здоровье: <span className={altar > 0 ? styles.value : null}>{formatNumber(params.health)}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemEnergy}`}>
-                    энергия: <span className={altar > 0 ? styles.value : null}>{params.energy}</span>
+                    энергия: <span className={altar > 0 ? styles.value : null}>{formatNumber(params.energy)}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemRegeneration}`}>
-                    регенерация: <span className={altar > 0 ? styles.value : null}>{params.regeneration}</span>
+                    регенерация: <span className={altar > 0 ? styles.value : null}>{formatNumber(params.regeneration)}</span>
                 </li>
                 <li className={`${styles.item} ${styles.itemShield}`}>
-                    броня: <span className={altar > 0 ? styles.value : null}>{params.shield}</span>
+                    броня: <span className={altar > 0 ? styles.value : null}>{formatNumber(params.shield)}</span>
                 </li>
                 <li className={styles.item}>
-                    сумма: <span className={altar > 0 ? styles.value : null}>{totalSum}</span>
+                    сумма: <span className={altar > 0 ? styles.value : null}>{formatNumber(totalSum)}</span>
                 </li>
             </ul>
         </section>
