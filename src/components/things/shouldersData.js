@@ -6,6 +6,8 @@ import shouldersAtlant from '../../assets/images/things/shoulders/shoulders-atla
 import shouldersAtlant2 from '../../assets/images/things/shoulders/shoulders-atlant2.png';
 import shouldersVeteran from '../../assets/images/things/shoulders/shoulders-veteran.png';
 import shouldersVeteran2 from '../../assets/images/things/shoulders/shoulders-veteran2.png';
+import shouldersGladiator from '../../assets/images/things/shoulders/shoulders-gladiator.png';
+import shouldersGladiator2 from '../../assets/images/things/shoulders/shoulders-gladiator2.png';
 
 
 const shouldersVeteranInit = {
@@ -79,6 +81,13 @@ const shoulders = [
         name: `Наплечник Ветерана`,
         icon: shouldersVeteran,
         iconSorcerer: shouldersVeteran2,
+    },
+    {
+        ...shouldersVeteranInit,
+        id: 4,
+        name: `Наплечник Гладиатора`,
+        icon: shouldersGladiator,
+        iconSorcerer: shouldersGladiator2,
     },
 ];
 

@@ -6,6 +6,8 @@ import ringAtlant from '../../assets/images/things/rings/ring-atlant.png';
 import ringAtlant2 from '../../assets/images/things/rings/ring-atlant2.png';
 import ringVeteran from '../../assets/images/things/rings/ring-veteran.png';
 import ringVeteran2 from '../../assets/images/things/rings/ring-veteran2.png';
+import ringGladiator from '../../assets/images/things/rings/ring-gladiator.png';
+import ringGladiator2 from '../../assets/images/things/rings/ring-gladiator2.png';
 import ringNemesis from '../../assets/images/things/rings/ring-nemesis.png';
 import ringNemesis2 from '../../assets/images/things/rings/ring-nemesis2.png';
 
@@ -83,7 +85,14 @@ const rings = [
         iconSorcerer: ringVeteran2,
     },
     {
+        ...ringVeteranInit,
         id: 4,
+        name: `Кольцо Гладиатора`,
+        icon: ringGladiator,
+        iconSorcerer: ringGladiator2,
+    },
+    {
+        id: 5,
         name: `Кольцо Немезиды`,
         level: 25,
         icon: ringNemesis,

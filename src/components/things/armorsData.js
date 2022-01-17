@@ -6,6 +6,8 @@ import armorAtlant from '../../assets/images/things/armors/armor-atlant.png';
 import armorAtlant2 from '../../assets/images/things/armors/armor-atlant2.png';
 import armorVeteran from '../../assets/images/things/armors/armor-veteran.png';
 import armorVeteran2 from '../../assets/images/things/armors/armor-veteran2.png';
+import armorGladiator from '../../assets/images/things/armors/armor-gladiator.png';
+import armorGladiator2 from '../../assets/images/things/armors/armor-gladiator2.png';
 
 
 const armorVeteranInit = {
@@ -80,6 +82,14 @@ const armors = [
         level: 25,
         icon: armorVeteran,
         iconSorcerer: armorVeteran2,
+    },
+    {
+        ...armorVeteranInit,
+        id: 4,
+        name: `Кираса Гладиатора`,
+        level: 25,
+        icon: armorGladiator,
+        iconSorcerer: armorGladiator2,
     },
 ];
 

@@ -6,6 +6,8 @@ import helmetAtlant from '../../assets/images/things/helmets/helmet-atlant.png';
 import helmetAtlant2 from '../../assets/images/things/helmets/helmet-atlant2.png';
 import helmetVeteran from '../../assets/images/things/helmets/helmet-veteran.png';
 import helmetVeteran2 from '../../assets/images/things/helmets/helmet-veteran2.png';
+import helmetGladiator from '../../assets/images/things/helmets/helmet-gladiator.png';
+import helmetGladiator2 from '../../assets/images/things/helmets/helmet-gladiator2.png';
 
 
 const helmetVeteranInit = {
@@ -79,6 +81,13 @@ const helmets = [
         name: `Шлем Ветерана`,
         icon: helmetVeteran,
         iconSorcerer: helmetVeteran2,
+    },
+    {
+        ...helmetVeteranInit,
+        id: 4,
+        name: `Шлем Гладиатора`,
+        icon: helmetGladiator,
+        iconSorcerer: helmetGladiator2,
     },
 ];
 

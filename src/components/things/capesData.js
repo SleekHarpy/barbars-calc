@@ -6,6 +6,8 @@ import capeAtlant from '../../assets/images/things/capes/cape-atlant.png';
 import capeAtlant2 from '../../assets/images/things/capes/cape-atlant2.png';
 import capeVeteran from '../../assets/images/things/capes/cape-veteran.png';
 import capeVeteran2 from '../../assets/images/things/capes/cape-veteran2.png';
+import capeGladiator from '../../assets/images/things/capes/cape-gladiator.png';
+import capeGladiator2 from '../../assets/images/things/capes/cape-gladiator2.png';
 
 
 const capeVeteranInit = {
@@ -80,6 +82,14 @@ const capes = [
         level: 25,
         icon: capeVeteran,
         iconSorcerer: capeVeteran2,
+    },
+    {
+        ...capeVeteranInit,
+        id: 4,
+        name: `Бурка Гладиатора`,
+        level: 25,
+        icon: capeGladiator,
+        iconSorcerer: capeGladiator2,
     },
 ];
 

@@ -6,6 +6,8 @@ import beltAtlant from '../../assets/images/things/belts/belt-atlant.png';
 import beltAtlant2 from '../../assets/images/things/belts/belt-atlant2.png';
 import beltVeteran from '../../assets/images/things/belts/belt-veteran.png';
 import beltVeteran2 from '../../assets/images/things/belts/belt-veteran2.png';
+import beltGladiator from '../../assets/images/things/belts/belt-gladiator.png';
+import beltGladiator2 from '../../assets/images/things/belts/belt-gladiator2.png';
 
 
 const beltVeteranInit = {
@@ -79,6 +81,13 @@ const belts = [
         name: `Пояс Ветерана`,
         icon: beltVeteran,
         iconSorcerer: beltVeteran2,
+    },
+    {
+        ...beltVeteranInit,
+        id: 4,
+        name: `Пояс Гладиатора`,
+        icon: beltGladiator,
+        iconSorcerer: beltGladiator2,
     },
 ];
 

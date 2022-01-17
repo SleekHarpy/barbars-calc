@@ -6,6 +6,8 @@ import pantsAtlant from '../../assets/images/things/pants/pants-atlant.png';
 import pantsAtlant2 from '../../assets/images/things/pants/pants-atlant2.png';
 import pantsVeteran from '../../assets/images/things/pants/pants-veteran.png';
 import pantsVeteran2 from '../../assets/images/things/pants/pants-veteran2.png';
+import pantsGladiator from '../../assets/images/things/pants/pants-gladiator.png';
+import pantsGladiator2 from '../../assets/images/things/pants/pants-gladiator2.png';
 
 
 const pantsVeteranInit = {
@@ -79,6 +81,13 @@ const pants = [
         name: `Штаны Ветерана`,
         icon: pantsVeteran,
         iconSorcerer: pantsVeteran2,
+    },
+    {
+        ...pantsVeteranInit,
+        id: 4,
+        name: `Штаны Гладиатора`,
+        icon: pantsGladiator,
+        iconSorcerer: pantsGladiator2,
     },
 ];
 

@@ -6,6 +6,8 @@ import braceletAtlant from '../../assets/images/things/bracelets/bracelet-atlant
 import braceletAtlant2 from '../../assets/images/things/bracelets/bracelet-atlant2.png';
 import braceletVeteran from '../../assets/images/things/bracelets/bracelet-veteran.png';
 import braceletVeteran2 from '../../assets/images/things/bracelets/bracelet-veteran2.png';
+import braceletGladiator from '../../assets/images/things/bracelets/bracelet-gladiator.png';
+import braceletGladiator2 from '../../assets/images/things/bracelets/bracelet-gladiator2.png';
 
 
 const braceletVeteranInit = {
@@ -79,6 +81,13 @@ const bracelets = [
         name: `Браслет Ветерана`,
         icon: braceletVeteran,
         iconSorcerer: braceletVeteran2,
+    },
+    {
+        ...braceletVeteranInit,
+        id: 4,
+        name: `Браслет Гладиатора`,
+        icon: braceletGladiator,
+        iconSorcerer: braceletGladiator2,
     },
 ];
 
