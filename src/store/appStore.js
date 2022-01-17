@@ -21,6 +21,8 @@ class AppStore{
     runes = {...initialState};
     combatSkill = 0;
     premium = 0;
+    pedestal = 0;
+    armory = 0;
     things = {
         helmet: {...initialState},
         amulet: {...initialState},
@@ -81,6 +83,8 @@ class AppStore{
             runes: observable,
             combatSkill: observable,
             premium: observable,
+            pedestal: observable,
+            armory: observable,
             things: observable,
             thingCharms: observable,
             thingRunes: observable,
@@ -97,6 +101,8 @@ class AppStore{
             updateRunes: action,
             updateCombatSkill: action,
             updatePremium: action,
+            updatePedestal: action,
+            updateArmory: action,
             updateThings: action,
             updateIsReset: action,
         });
@@ -144,7 +150,15 @@ class AppStore{
 
     updatePremium(isPremium) {
         this.premium = isPremium ? PREMIUM_BONUS : 0;
-    }
+    };
+
+    updatePedestal(value) {
+        this.pedestal = value;
+    };
+
+    updateArmory(value) {
+        this.armory = value;
+    };
 
     updateSumThings(things) {
         this.sumThings = things;

@@ -10,7 +10,7 @@ function ChatScreen() {
 
     return (
         <Container>
-            <Header />
+            {/*<Header />*/}
 
             <section>
                 <h2 className={styles.title}>Присоединяйтесь к обсуждению в Telegram!</h2>

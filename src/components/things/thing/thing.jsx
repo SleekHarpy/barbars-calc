@@ -346,7 +346,7 @@ function Thing({store, things, thingData}) {
                                     thingState.multipliedParams[item.param] > 0 &&
                                     <li className={styles.item} key={item.param} data-param={item.param}>
                                         {paramNamesTwo[item.param]}: {thingState.multipliedParams[item.param]}
-                                        <span className={styles.fieldWrap}> (+<input className={styles.field} onChange={handleChangePercent} value={thingState.paramPercents[item.param] > 0 ? thingState.paramPercents[item.param] : ``} name={item.param} data-param-default={item.value} type="number" placeholder="0"/>%)</span>
+                                        <span className={styles.fieldWrap}> (+<input className={styles.field} onChange={handleChangePercent} onClick={(e) => e.target.select()} value={thingState.paramPercents[item.param] > 0 ? thingState.paramPercents[item.param] : ``} name={item.param} data-param-default={item.value} type="number" placeholder="0"/>%)</span>
                                     </li>
                                 )) }
                             </ul>

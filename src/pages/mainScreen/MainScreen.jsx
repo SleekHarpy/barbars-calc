@@ -14,7 +14,7 @@ import Premium from '../../components/premium/Premium';
 import Things from '../../components/things/things';
 import Reset from '../../components/reset/Reset';
 import { useRef } from 'react';
-import Stronghold from '../../components/stronghold/Stronghold';
+import Citadel from '../../components/citadel/Citadel';
 
 
 function MainScreen({store}) {
@@ -22,7 +22,7 @@ function MainScreen({store}) {
 
     return (
         <Container>
-            <Header />
+            {/*<Header />*/}
             <Level store={store} />
             <HeroCharacteristics store={store} />
             <Cups store={store} />
@@ -34,7 +34,7 @@ function MainScreen({store}) {
             <Quenching store={store} />
             <CombatSkill store={store} />
             <Premium store={store} />
-            <Stronghold />
+            <Citadel store={store} />
             <Things store={store} />
             <Reset store={store} onReset={resetRef} />
         </Container>

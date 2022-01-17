@@ -1,0 +1,37 @@
+@import "src/assets/styles/variables";
+@import "src/assets/styles/mixins";
+
+
+.citadel {
+  @include divider;
+
+  padding: 0 24px;
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 14px;
+
+  color: $color-main;
+}
+
+.list {
+  @include listReset;
+
+  padding-left: 10px;
+
+  display: grid;
+  gap: 10px;
+}
+
+.label {
+  @include defaultStar;
+}
+
+.fieldWrap {
+  color: $color-secondary;
+}
+
+.field {
+  @include field;
+}
