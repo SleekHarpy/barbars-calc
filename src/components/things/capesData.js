@@ -8,6 +8,7 @@ import capeVeteran from '../../assets/images/things/capes/cape-veteran.png';
 import capeVeteran2 from '../../assets/images/things/capes/cape-veteran2.png';
 import capeGladiator from '../../assets/images/things/capes/cape-gladiator.png';
 import capeGladiator2 from '../../assets/images/things/capes/cape-gladiator2.png';
+import capeDedmoroz from '../../assets/images/things/capes/cape-dedmoroz.png';
 
 
 const capeVeteranInit = {
@@ -90,6 +91,14 @@ const capes = [
         level: 25,
         icon: capeGladiator,
         iconSorcerer: capeGladiator2,
+    },
+    {
+        ...capeVeteranInit,
+        id: 5,
+        name: `Мешок Дедмороза`,
+        level: 25,
+        icon: capeDedmoroz,
+        iconSorcerer: capeDedmoroz,
     },
 ];
 

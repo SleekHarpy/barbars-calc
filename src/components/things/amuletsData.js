@@ -8,6 +8,7 @@ import amuletVeteran from '../../assets/images/things/amulets/amulet-veteran.png
 import amuletVeteran2 from '../../assets/images/things/amulets/amulet-veteran2.png';
 import amuletGladiator from '../../assets/images/things/amulets/amulet-gladiator.png';
 import amuletGladiator2 from '../../assets/images/things/amulets/amulet-gladiator2.png';
+import amuletDedmoroz from '../../assets/images/things/amulets/amulet-dedmoroz.png';
 import amuletZodiac from '../../assets/images/things/amulets/amulet-zodiac.png';
 import amuletZodiac2 from '../../assets/images/things/amulets/amulet-zodiac2.png';
 
@@ -93,7 +94,14 @@ const amulets = [
         iconSorcerer: amuletGladiator2,
     },
     {
+        ...amuletVeteranInit,
         id: 5,
+        name: `Борода Дедмороза`,
+        icon: amuletDedmoroz,
+        iconSorcerer: amuletDedmoroz,
+    },
+    {
+        id: 6,
         name: `Амулет Зодиака`,
         level: 25,
         icon: amuletZodiac,

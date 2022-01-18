@@ -8,6 +8,7 @@ import braceletVeteran from '../../assets/images/things/bracelets/bracelet-veter
 import braceletVeteran2 from '../../assets/images/things/bracelets/bracelet-veteran2.png';
 import braceletGladiator from '../../assets/images/things/bracelets/bracelet-gladiator.png';
 import braceletGladiator2 from '../../assets/images/things/bracelets/bracelet-gladiator2.png';
+import braceletDedmoroz from '../../assets/images/things/bracelets/bracelet-dedmoroz.png';
 
 
 const braceletVeteranInit = {
@@ -88,6 +89,13 @@ const bracelets = [
         name: `Браслет Гладиатора`,
         icon: braceletGladiator,
         iconSorcerer: braceletGladiator2,
+    },
+    {
+        ...braceletVeteranInit,
+        id: 5,
+        name: `Браслет Дедмороза`,
+        icon: braceletDedmoroz,
+        iconSorcerer: braceletDedmoroz,
     },
 ];
 

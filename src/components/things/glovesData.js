@@ -8,6 +8,7 @@ import glovesVeteran from '../../assets/images/things/gloves/gloves-veteran.png'
 import glovesVeteran2 from '../../assets/images/things/gloves/gloves-veteran2.png';
 import glovesGladiator from '../../assets/images/things/gloves/gloves-gladiator.png';
 import glovesGladiator2 from '../../assets/images/things/gloves/gloves-gladiator2.png';
+import glovesDedmoroz from '../../assets/images/things/gloves/gloves-dedmoroz.png';
 
 
 const glovesVeteranInit = {
@@ -88,6 +89,13 @@ const gloves = [
         name: `Наручи Гладиатора`,
         icon: glovesGladiator,
         iconSorcerer: glovesGladiator2,
+    },
+    {
+        ...glovesVeteranInit,
+        id: 5,
+        name: `Варежки Дедмороза`,
+        icon: glovesDedmoroz,
+        iconSorcerer: glovesDedmoroz,
     },
 ];
 

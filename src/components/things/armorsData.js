@@ -8,6 +8,7 @@ import armorVeteran from '../../assets/images/things/armors/armor-veteran.png';
 import armorVeteran2 from '../../assets/images/things/armors/armor-veteran2.png';
 import armorGladiator from '../../assets/images/things/armors/armor-gladiator.png';
 import armorGladiator2 from '../../assets/images/things/armors/armor-gladiator2.png';
+import armorDedmoroz from '../../assets/images/things/armors/armor-dedmoroz.png';
 
 
 const armorVeteranInit = {
@@ -90,6 +91,14 @@ const armors = [
         level: 25,
         icon: armorGladiator,
         iconSorcerer: armorGladiator2,
+    },
+    {
+        ...armorVeteranInit,
+        id: 5,
+        name: `Шуба Дедмороза`,
+        level: 25,
+        icon: armorDedmoroz,
+        iconSorcerer: armorDedmoroz,
     },
 ];
 

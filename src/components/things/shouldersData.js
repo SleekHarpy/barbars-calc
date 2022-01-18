@@ -8,6 +8,7 @@ import shouldersVeteran from '../../assets/images/things/shoulders/shoulders-vet
 import shouldersVeteran2 from '../../assets/images/things/shoulders/shoulders-veteran2.png';
 import shouldersGladiator from '../../assets/images/things/shoulders/shoulders-gladiator.png';
 import shouldersGladiator2 from '../../assets/images/things/shoulders/shoulders-gladiator2.png';
+import shouldersDedmoroz from '../../assets/images/things/shoulders/shoulders-dedmoroz.png';
 
 
 const shouldersVeteranInit = {
@@ -88,6 +89,13 @@ const shoulders = [
         name: `Наплечник Гладиатора`,
         icon: shouldersGladiator,
         iconSorcerer: shouldersGladiator2,
+    },
+    {
+        ...shouldersVeteranInit,
+        id: 5,
+        name: `Воротник Дедмороза`,
+        icon: shouldersDedmoroz,
+        iconSorcerer: shouldersDedmoroz,
     },
 ];
 

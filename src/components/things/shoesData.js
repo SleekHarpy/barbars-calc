@@ -8,6 +8,7 @@ import shoesVeteran from '../../assets/images/things/shoes/shoes-veteran.png';
 import shoesVeteran2 from '../../assets/images/things/shoes/shoes-veteran2.png';
 import shoesGladiator from '../../assets/images/things/shoes/shoes-gladiator.png';
 import shoesGladiator2 from '../../assets/images/things/shoes/shoes-gladiator2.png';
+import shoesDedmoroz from '../../assets/images/things/shoes/shoes-dedmoroz.png';
 
 
 const shoesVeteranInit = {
@@ -88,6 +89,13 @@ const shoes = [
         name: `Сапоги Гладиатора`,
         icon: shoesGladiator,
         iconSorcerer: shoesGladiator2,
+    },
+    {
+        ...shoesVeteranInit,
+        id: 5,
+        name: `Валенки Дедмороза`,
+        icon: shoesDedmoroz,
+        iconSorcerer: shoesDedmoroz,
     },
 ];
 

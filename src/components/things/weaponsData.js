@@ -8,6 +8,7 @@ import weaponVeteran from '../../assets/images/things/weapons/weapon-veteran.png
 import weaponVeteran2 from '../../assets/images/things/weapons/weapon-veteran2.png';
 import weaponGladiator from '../../assets/images/things/weapons/weapon-gladiator.png';
 import weaponGladiator2 from '../../assets/images/things/weapons/weapon-gladiator2.png';
+import weaponDedmoroz from '../../assets/images/things/weapons/weapon-dedmoroz.png';
 import weaponDragon from '../../assets/images/things/weapons/weapon-dragon.png';
 import weaponDragon2 from '../../assets/images/things/weapons/weapon-dragon2.png';
 import weaponGiant from '../../assets/images/things/weapons/weapon-giant.png';
@@ -94,7 +95,14 @@ const weapons = [
         iconSorcerer: weaponGladiator2,
     },
     {
+        ...weaponVeteranInit,
         id: 5,
+        name: `Палка Дедмороза`,
+        icon: weaponDedmoroz,
+        iconSorcerer: weaponDedmoroz,
+    },
+    {
+        id: 6,
         name: `Коготь Дракона`,
         level: 25,
         icon: weaponDragon,
@@ -109,7 +117,7 @@ const weapons = [
         ],
     },
     {
-        id: 6,
+        id: 7,
         name: `Дубина Великана`,
         level: 25,
         icon: weaponGiant,
